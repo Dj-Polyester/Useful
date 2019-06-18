@@ -1,7 +1,7 @@
 #!/bin/bash
 
 filenames=("$@")
-
+LFLAGS="-lncurses -lm"
 CFLAGS="-ggdb3 -Wall -Wextra -Wconversion -pedantic-errors"
 
 
@@ -14,13 +14,13 @@ if [ headers != "n" ];
 then
 	for filename in ${filenames[@]};
 	do
-  		g++ -g ${filename}.cpp -o ${filename} ${headers[@]} ${CFLAGS}
+  		gcc -g ${filename}.c -o ${filename} ${headers[@]} ${CFLAGS} ${LFLAGS}
 	done
 
 	#this is also doable
 	#for i in ${!filenames[@]};
 	#do
-	#  g++ -g ${filenames[$i]}.cpp -o ${filenames[$i]} ${headers[@]} ${CFLAGS}
+	#  gcc -g ${filenames[$i]}.cpp -o ${filenames[$i]} ${headers[@]} ${CFLAGS} ${LFLAGS}
 	#done
 
 	
