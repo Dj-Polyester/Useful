@@ -33,18 +33,31 @@ class game
        */
 
 };
+/* 
+bool game::check_repeat(string str)
+{
+    vector<size_t> repeat;
+    for(size_t i=0;i<str.size();++i)
+    {
+        //in repeat
+        if(find(repeat.begin(), repeat.end(), str[i]) != repeat.end()) return true;
+        repeat.push_back(str[i]);
+    }
 
+    return false;
+}
+*/
 string game::choose(size_t data)
 {
     size_t count;
-    string three[24]={"hob","bee","hat","icy","tip","rho","wet","beg","tom","vow","ohm","him","all","dis","fee","fob","fry","aye","fig","net","nib","wee","hot","can"};
-    string four[15]={"lair","time","dunk","idea","lute","trap","clam","desk","lyre","maze","rice","moat","take","ammo","good"};
-    string five[20]={"magic","voice","sooth","venom","cakes","blame","aurae","refer","based","warps","adopt","foamy","cumin","daily","gourd","abbey","kayak","brawn","scalp","stunt"};
-    string six[20]={"resign","ticket","wheels","linage","piracy","diaper","uterus","grungy","caches","tamale","preach","delays","fridge","upkeep","modify","gazebo","plaids","unmask","peddle","squeak"};
-    string seven[12]={"grimace","swathed","foolery","walkers","tempter","kumquat","kernels","lazying","wearily","raceway","several","sellout"};
-    string eight[5]={"leniency","practice","apposite","automate","tutorial"};
-    string nine[8]={"tremulous","mortgagor","anomalous","bombastic","guarantee","fluctuate","malicious","rapacious"};
-    string ten[14]={"monsignori","instalment","nincompoop","conversion","knighthood","forerunner","crossbreed","insecurity","settlement","likelihood","amateurism","rediscover","theocratic","enchiladas"};
+    string three[20]={"hob","hat","icy","tip","rho","wet","beg","tom","vow","ohm","him","dis","fob","fry","aye","fig","net","nib","hot","can"};
+    string four[13]={"lair","time","dunk","idea","lute","trap","clam","desk","lyre","maze","rice","moat","take"};
+    string five[13]={"magic","voice","venom","blame","warps","adopt","foamy","cumin","daily","gourd","brawn","scalp","stunt"};
+    string six[10]={"resign","linage","piracy","diaper","preach","fridge","modify","gazebo","unmask","squeak"};
+    string seven[5]={"grimace","swathed","wearily","raceway","several"};
+    string eight[4]={"thursday","thousand","chipotle","violence"};
+    string nine[5]={"tremulous","something","dangerous","masculine","wrestling"};
+    string ten[14]={"instalment","rediscover"};
     string* strvar;
 
     if(data==3)
@@ -153,7 +166,7 @@ bool game::play()
     	    
             --attempts;
             if(!attempts) break;
-            cout << "Inorrect answer. Try again. " << attempts << " attempts remaining." << endl;
+            cout << "Incorrect answer. Try again. " << attempts << " attempts remaining." << endl;
             getline(cin,guess);
         }
         
