@@ -5,26 +5,38 @@
 #include <vector>
 #include <algorithm>
 
+
 using namespace std;
 
 class game
 {
-    int levels,attempts,lettercount,score;
-
-    vector<vector<int> > scoreboard;
-     vector<string> answers;
+    size_t levels,attempts,lettercount,score,bulls,cows;
+    string word;
+    
+     
     public:
-        game(int lwls,int attmpts,int lttrcnt);
+        game(size_t lwls,size_t attmpts,size_t lttrcnt);
         bool play();
         ~game();
-        void choose(string str,int data);
-        int Bulls(string str,string wrd);
-        int Cows(string str,string wrd);
+        string choose(size_t data);
+        size_t Bulls(string str,string wrd);
+        size_t Cows(string str,string wrd);
+        /*
+        void setLevels(size_t x) {levels=x};
+        void setAttempts(size_t x) {attempts=x};
+       void setLettercount(size_t x) {lettercount=x};
+       void setScore(size_t x) {score=x};
+        size_t getLevels() {return levels};
+        size_t getAttempts() {return attempts};
+       size_t getLettercount() {return lettercount};
+       size_t getScore() {return score};
+       */
 
 };
 
-void game::choose(string str,int data)
+string game::choose(size_t data)
 {
+    size_t count;
     string three[24]={"hob","bee","hat","icy","tip","rho","wet","beg","tom","vow","ohm","him","all","dis","fee","fob","fry","aye","fig","net","nib","wee","hot","can"};
     string four[15]={"lair","time","dunk","idea","lute","trap","clam","desk","lyre","maze","rice","moat","take","ammo","good"};
     string five[20]={"magic","voice","sooth","venom","cakes","blame","aurae","refer","based","warps","adopt","foamy","cumin","daily","gourd","abbey","kayak","brawn","scalp","stunt"};
@@ -34,59 +46,59 @@ void game::choose(string str,int data)
     string nine[8]={"tremulous","mortgagor","anomalous","bombastic","guarantee","fluctuate","malicious","rapacious"};
     string ten[14]={"monsignori","instalment","nincompoop","conversion","knighthood","forerunner","crossbreed","insecurity","settlement","likelihood","amateurism","rediscover","theocratic","enchiladas"};
     string* strvar;
-    int size=str.size(),count;
 
-    if(size==3)
+    if(data==3)
     {
         strvar=three;
         count=24;
     }
-    else if(size==4) 
+    else if(data==4) 
     {
          strvar=four;
           count=15;
     }
    
-    else if(size==5) 
+    else if(data==5) 
     {
         strvar=five;
          count=20;
     }
-    else if(size==6) 
+    else if(data==6) 
     {
          strvar=six;
           count=20;
     }
-    else if(size==7) 
+    else if(data==7) 
     {
         strvar=seven;
          count=12;
     }
-    else if(size==8) 
+    else if(data==8) 
     {
         strvar=eight;
          count=5;
     }
-    else if(size==9) 
+    else if(data==9) 
     {
         strvar=nine;
         count=8;
     }
-    else if(size==10) 
+    else if(data==10) 
     {
         strvar=ten;
         count=14;
     }
 
-    int i=rand()%count;
-    str=strvar[i];  
+    size_t i=rand()%count;  
+    
+    return strvar[i];
 }
 
-game::game(int lwls,int attmpts,int lttrcnt)
+game::game(size_t lwls,size_t attmpts,size_t lttrcnt)
 {
      srand(time(NULL));
      // 0<=levels<=7               0<=lettercount<=7
-    levels=rand()%lwls,attempts=attmpts,lettercount=lttrcnt,score=0;
+    levels=lwls,attempts=attmpts,lettercount=lttrcnt,score=0;
 
     while(play());
 
@@ -96,21 +108,13 @@ game::~game()
 {
     if(score==levels)
     {
-        cout << "You won!" << endl;
+        cout << endl << "You won!" << endl;
     }
     else
     {
-        cout << "You lost!" << endl;
+        cout << endl << "You lost!" << " The answer was "<< word << endl;
+      
     }
-    cout << "Correct answers:" << endl;
-    for(int i=0;i<levels;++i)
-    {
-        cout << answers[i];
-        if(i<=score) cout << "Q" << i+1 << "      Bulls: " << scoreboard[i][0] <<  "Cows: " << scoreboard[i][1] ;
-        if(i==score) cout << "<-your score" ;
-        cout << endl;
-    }
-
 }
 
 
@@ -118,60 +122,64 @@ bool game::play()
 {
      //lose or win
      int tmp=attempts;
-     string word,guess;
+     string guess;
     if(!attempts || score==levels)
     {
          return 0;   
     }
     
-    choose(word,lettercount);
-    cout << "Guess the" << lettercount << "letter hidden word: " << endl;
-    cout << "You have" << attempts << "attempts remaining: " << endl;
-
+    word=choose(lettercount);
+    cout << "Guess the " << lettercount << " letter hidden word: " << endl;
+    cout << "You have " << attempts << " attempts: " << endl;
+	
+    cout << word << endl;
     getline(cin,guess);
 
-    int bulls=Bulls(guess,word);
-    int cows=Cows(guess,word);
-
-    cout << endl << cows << "cows" << endl;
-    cout << bulls << "bulls" << endl;
+    
 
    
    
     //continue playing
-    if(guess==word)
+     if(guess!=word)
     {
-        score++;
-        if(!(score%2)) attempts+=2;
-        vector<int> temp;
-        temp.push_back(bulls);
-        temp.push_back(cows);
-        answers.push_back(word);
-
-        return 1;
-    }
-    else
-    {
-        --attempts;
-        while (guess!=word )
+        
+        while (guess!=word)
         {
-            cout << "Wrong answer. Try again." << attempts << "Attempts remaining." << endl;
+            bulls=Bulls(guess,word);
+    	    cows=Cows(guess,word);
+
+    	    cout << endl << cows << " cows" << endl;
+    	    cout << bulls << " bulls" << endl;
+    	    
+            --attempts;
+            if(!attempts) break;
+            cout << "Inorrect answer. Try again. " << attempts << " attempts remaining." << endl;
             getline(cin,guess);
         }
+        
         if(attempts) attempts=tmp;
+    }
+    
+    if(guess==word)
+    {
+        cout << "Congratulations. Correct answer." << endl;
+        ++score;
+        ++lettercount;
+        if(!(score%2)) attempts+=2;
 
         return 1;
     }
+   
     
     
     return 1;
 }
 
 
-int game::Bulls(string str,string wrd)
+size_t game::Bulls(string str,string wrd)
 {
-    int count=0;
-    for(int i=0;i<str.size();++i)
+    size_t count=0;
+    for(size_t i=0;i<str.size();++i)
     {
         if(str[i]==wrd[i]) ++count;
 
@@ -180,16 +188,16 @@ int game::Bulls(string str,string wrd)
     return count;
 }
 
-int game::Cows(string str,string wrd)
+size_t game::Cows(string str,string wrd)
 {
-    int count=0;
+    size_t count=0;
     vector<int> table;
 
-    for(int i=0;i<str.size();++i)
+    for(size_t i=0;i<str.size();++i)
     {
-        for(i=0;i<wrd.size();++i)
+        for(size_t j=0;j<wrd.size();++j)
         {
-             if(str[i]==wrd[i] && find(table.begin(), table.end(), i) == table.end())
+             if(str[i]==wrd[j] && find(table.begin(), table.end(), j) == table.end() && i!=j)
              {
                  ++count;
                  table.push_back(i);
@@ -205,8 +213,11 @@ int game::Cows(string str,string wrd)
 
 int main()
 {
+   /* size_t lwl;
+    cout << "Choose your level: ";
+    cin >> lwl;*/
     
-    game Game(8,2,3);
-    cin.get();
+    game Game(2,2,3);
+   
     return 0;
 }
