@@ -121,7 +121,7 @@ game::~game()
 bool game::play()
 {
      //lose or win
-     int tmp=attempts;
+     size_t tmp=attempts;
      string guess;
     if(!attempts || score==levels)
     {
@@ -191,7 +191,7 @@ size_t game::Bulls(string str,string wrd)
 size_t game::Cows(string str,string wrd)
 {
     size_t count=0;
-    vector<int> table;
+    vector<size_t> table;
 
     for(size_t i=0;i<str.size();++i)
     {
@@ -213,11 +213,12 @@ size_t game::Cows(string str,string wrd)
 
 int main()
 {
-   /* size_t lwl;
+    size_t lwl;
     cout << "Choose your level: ";
-    cin >> lwl;*/
+    cin >> lwl;
+    getchar();
     
-    game Game(2,2,3);
+    game Game(lwl,2,3);
    
     return 0;
 }
