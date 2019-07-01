@@ -1,0 +1,12 @@
+{"hob","hat","icy","tip","rho","wet","beg","tom","vow","ohm","him","dis","fob","fry","aye","fig","net","nib","hot","can"};
+{"lair","time","dunk","idea","lute","trap","clam","desk","lyre","maze","rice","moat","take"};
+{"magic","voice","venom","cakes","blame","refer","based","warps","adopt","foamy","cumin","daily","gourd","brawn","scalp","stunt"};
+{"resign","linage","piracy","diaper","caches","preach","delays","fridge","modify","gazebo","plaids","unmask","squeak"};
+{"grimace","swathed","walkers","lazying","wearily","tuesday","special","monster","dolphin","courage","harmony"};
+{"thursday","chipotle","children","birthday","mountain","sandwich","internal","daughter","hospital","ordinary"};
+{"fireboard","dangerous","congruent"};
+{"instalment","theocratic"};
+
+put delimiters between words, but for readibility, same delimiter is recommended
+do not modify number and location of lines, only add or remove each lines' contents 
+write your comments after this line:
