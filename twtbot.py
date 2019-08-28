@@ -5,9 +5,9 @@ import tkinter as tk
 
 #feed your username password below, the hashtag that you want to surf in, and the how many times to scroll down the page 
 #for UI, uncomment some of the lines below
-USERNAME="babaking_571"
-PASSWORD="140299Bk"
-HASHTAG="webdesign"
+USERNAME=
+PASSWORD=
+HASHTAG=
 SCROLL_RATE=3
 
 class TwitBot:
