@@ -2,6 +2,8 @@
 
 filenames=("$@")
 
+source OS.sh
+
 echo "Enter headers' names (n to refuse): "
 
 read -a headers
@@ -19,7 +21,7 @@ then
   		done
   		
   		printf "\nusing namespace std;\n\nint main()\n{\n\n	return 0;\n}" >> ${filename}.cpp
-  		gedit ${filename}.cpp &
+  		${program} ${filename}.cpp &
 	done
 
 else
