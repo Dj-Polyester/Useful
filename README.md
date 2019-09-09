@@ -3,6 +3,7 @@ Contains some useful materials such as hand-made makefile and a decryptor
 
 Files contents in order-roughly- as follows:
 
+-bash automation file contains .sh files for automated creating
 
 -Bulls and cows game(a word puzzle game)
 
