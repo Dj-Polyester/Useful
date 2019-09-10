@@ -30,7 +30,7 @@ else
   		echo "#include <iostream>" >> ${filename}.cpp
   		
   		printf "\nusing namespace std;\n\nint main()\n{\n\n	return 0;\n}" >> ${filename}.cpp
-  		gedit ${filename}.cpp &
+  		${program} ${filename}.cpp &
 	done
 		
 fi
