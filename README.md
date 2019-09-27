@@ -9,6 +9,8 @@ Files contents in order-roughly- as follows:
 
 -A simple clock interface(developed with curses environment)
 
+-some data types for cs class implemented
+
 -drawem, a drawing applicaiton UI
 
 -a file encryptor(contains its decryptor, incomplete yet -open to contributors)
