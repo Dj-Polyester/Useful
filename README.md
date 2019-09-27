@@ -7,7 +7,7 @@ Files contents in order-roughly- as follows:
 
 -Bulls and cows game(a word puzzle game)
 
--A simple clock interface(developed with curses environment)
+-a simple clock interface(developed with curses environment)
 
 -some data types for cs class implemented
 
