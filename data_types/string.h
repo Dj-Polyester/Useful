@@ -10,6 +10,7 @@ private:
     char* str_data;
 public:
     String(const char* str=NULL);
+    //copy consrtuctor
     String(const String& other);
     ~String();
     String& operator = (const char* &str);

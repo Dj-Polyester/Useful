@@ -4,17 +4,21 @@
 #include <iostream>
 #include <cmath>
 
+
+template <class T,class U>
 class Complex
 {
     private:
-        float im, re;
+        T re;
+        U im;
     public:
-        Complex(float x=0,float y=0): re(x),im(y) {}
+        Complex(T x=0,U y=0): re(x),im(y) {}
 
         Complex operator + (Complex const &obj);
         Complex operator - (Complex const &obj);
         Complex operator * (Complex const &obj);
         Complex operator / (Complex const &obj);
+        Complex& operator = (const Complex &other);
         friend std::ostream& operator<<(std::ostream& out, const Complex &str);
         float distance() const {return sqrt(im*im+re*re);}
         void print();

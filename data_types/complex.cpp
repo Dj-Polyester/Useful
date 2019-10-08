@@ -2,38 +2,49 @@
 
 using namespace std;
 
-Complex Complex::operator + (Complex const &obj) 
+template <class T,class U>
+Complex<T,U> Complex<T,U>::operator + (Complex<T,U> const &obj) 
 { 
-    Complex res; 
-    res.re = re + obj.re; 
-    res.im = im + obj.im; 
+    Complex<T,U> res; 
+    res.re = (T)re + (T)obj.re; 
+    res.im = (U)im + (U)obj.im; 
     return res; 
 }
 
-Complex Complex::operator - (Complex const &obj) 
+template <class T,class U>
+Complex<T,U> Complex<T,U>::operator - (Complex<T,U> const &(T)obj) 
 { 
-    Complex res; 
-    res.re = re - obj.re; 
-    res.im = im - obj.im; 
+    Complex<T,U> res; 
+    res.re = (T)re - (T)obj.re; 
+    res.im = (U)im - (U)obj.im; 
     return res; 
 }
-Complex Complex::operator * (Complex const &obj) 
+template <class T,class U>
+Complex<T,U> Complex<T,U>::operator * (Complex<T,U> const &obj) 
 { 
-    Complex res; 
-    res.re = re*obj.re - im*obj.im; 
-    res.im = im*obj.re + re*obj.im; 
+    Complex<T,U> res; 
+    res.re = (T)re*obj.re - (T)im*obj.im; 
+    res.im = (U)im*obj.re + (U)re*obj.im; 
     return res; 
 }
-Complex Complex::operator / (Complex const &obj) 
+template <class T,class U>
+Complex<T,U> Complex<T,U>::operator / (Complex<T,U> const &obj) 
 { 
-    Complex res;
+    Complex<T,U> res;
     float div=obj.re*obj.re+obj.im*obj.im;
-    res.re = (re*obj.re + im*obj.im)/div; 
-    res.im = (im*obj.re - re*obj.im)/div; 
+    res.re = (T)(re*obj.re + im*obj.im)/(T)div; 
+    res.im = (U)(im*obj.re - re*obj.im)/(U)div; 
     return res; 
 }
-
-void Complex::print()
+template <class T,class U>
+Complex<T,U>& Complex<T,U>::operator = (const Complex<T,U> &other)
+{
+    re=(T)other.re;
+    im=(U)other.im;
+    return *this;
+}
+template <class T,class U>
+void Complex<T,U>::print()
 {        
     if(re!=0)
     {
@@ -48,8 +59,8 @@ void Complex::print()
         cout << im << "i";
     }        
 }
-
-std::ostream& operator<<(std::ostream& out, const Complex &num)
+template <class T,class U>
+std::ostream& operator<<(std::ostream& out, const Complex<T,U> &num)
 {
     if(num.re!=0)
     {
@@ -72,6 +83,9 @@ int main()
 {
     Complex num1(3,5);
     Complex num2(2,-7);
-    Complex result=num1/num2;
-    cout << result;
+    Complex<int,int> num3;
+    num3=num1;
+    Complex<int,int> result=num1/num2;
+    cout << result << endl;
+    cout << num3 << endl;
 }

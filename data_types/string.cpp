@@ -10,7 +10,7 @@ void String::set_data(const char* str)
     str_data = new char[length+1];
     str_data[length]='\0';
 
-    cout << "line 13: " << (length+1)*sizeof(char) << endl;
+    //cout << "line 13: " << (length+1)*sizeof(char) << endl;
 
     strcpy(str_data,str);
 }
@@ -28,7 +28,7 @@ String operator + (const String& str1,const char*& str2)
     tmp = new char[length_total+1];
     tmp[length_total]='\0';
 
-    cout << "line 31: " << (length_total+1)*sizeof(char) << endl;
+    //cout << "line 31: " << (length_total+1)*sizeof(char) << endl;
 
     strcpy(tmp,str1.data());
     strcat(tmp,str2);
@@ -52,7 +52,7 @@ String operator + (const String& str1,const String& str2)
     tmp = new char[length_total+1];
     tmp[length_total]='\0';
 
-    cout << "line 53: " << (length_total+1)*sizeof(char) << endl;
+    //cout << "line 53: " << (length_total+1)*sizeof(char) << endl;
 
     strcpy(tmp,str1.data());
     strcat(tmp,str2.data());
@@ -97,7 +97,7 @@ String& String::operator = (const char* &str)
     str_data = new char[length+1];
     str_data[length]='\0';
 
-    cout << "line 96: " << (length+1)*sizeof(char) << endl;
+    //cout << "line 96: " << (length+1)*sizeof(char) << endl;
 
     strcpy(str_data,str);
 
@@ -113,7 +113,7 @@ String& String::operator = (const String &str)
     str_data = new char[length+1];
     str_data[length]='\0';
 
-    cout << "line 112: " << (length+1)*sizeof(char) << endl;
+    //cout << "line 112: " << (length+1)*sizeof(char) << endl;
 
 
     strcpy(str_data,str.data());
@@ -130,7 +130,7 @@ String::String(const char* str)
         str_data = new char[length+1];
         str_data[length]='\0';
 
-            cout << "line 129: " << (length+1)*sizeof(char) << endl;
+        //cout << "line 129: " << (length+1)*sizeof(char) << endl;
 
 
         strcpy(str_data,str);
@@ -141,6 +141,7 @@ String::String(const char* str)
     }   
 }
 
+//copy consrtuctor
 String::String(const String& other)
 {
     if(other.str_data)
@@ -150,7 +151,7 @@ String::String(const String& other)
         str_data = new char[length+1];
         str_data[length]='\0';
 
-        cout << "line 149: " << (length+1)*sizeof(char) << endl;
+        //cout << "line 149: " << (length+1)*sizeof(char) << endl;
 
 
         strcpy(str_data,other.str_data);
