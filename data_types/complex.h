@@ -19,8 +19,11 @@ class Complex
         Complex operator * (Complex const &obj);
         Complex operator / (Complex const &obj);
         Complex& operator = (const Complex &other);
-        friend std::ostream& operator<<(std::ostream& out, const Complex &str);
-        float distance() const {return sqrt(im*im+re*re);}
+
+		template <class A,class B>
+		friend std::ostream& operator<<(std::ostream& out, const Complex<A,B> &str);
+
+		float distance() const {return sqrt(im*im+re*re);}
         void print();
 };
 
