@@ -27,7 +27,8 @@ class list
         ~list();
 
         void insert(T data,int index);
-        void append(T data );
+        void append(T data);
+        void push(T data);
         
         void nremove(int index);
         void removefirst(T data);
@@ -47,11 +48,11 @@ class list
 
         template<class U>
         friend std::ostream& operator<<(std::ostream& out, const list<U> &List);
-        T & operator [] (size_t index);
+        T & operator [] (int index);
 };
 
 template<class T>
-T & list<T>::operator [] (size_t index)
+T & list<T>::operator [] (int index)
 {
         int length=this->len;
         node<T>* curr;
@@ -163,6 +164,19 @@ void list<T>::append(T data)
 
     this->len++;
 }
+
+template<class T>
+void list<T>::push(T data)
+{
+    
+    node<T>* newnode = new node<T>(data,this->head,this->head->next);
+	
+    newnode->pre->next=newnode;
+    head->next=newnode;
+
+    this->len++;
+}
+
 
 template<class T>
 void list<T>::insert(T data,int index)

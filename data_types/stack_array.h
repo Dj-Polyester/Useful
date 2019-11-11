@@ -53,7 +53,10 @@ T Stack<T>::top() const
 template<class T>
 T Stack<T>::pop()
 {
-    if (!Top) return *stack;
+    if (!Top)
+    {
+    	throw "pop from an empty stack"
+    }
 
     T tmp_ret=stack[--Top];
     T* tmp=new T[Top];

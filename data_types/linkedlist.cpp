@@ -17,7 +17,7 @@ int main()
     List.append( 7);
     List.append( 19);
     List.append( 1);
-    
+   
     cout << List << endl;
     cout << List[2] << endl;
     List.printReverse();
@@ -36,7 +36,7 @@ int main()
     cout << "INSERT:\n";
     cout << List << endl;
     List.printReverse();
-/*
+
     List.nremove(-3);
     cout << "NREMOVE:\n";
     cout << List << endl;
@@ -56,7 +56,7 @@ int main()
     cout << "REMOVELAST:\n";
     cout << List << endl;
     List.printReverse();
-*/
+
     List.removeall(19);
     cout << "REMOVEALL:\n";
     cout << List << endl;
@@ -66,8 +66,8 @@ int main()
     cout << "INVERT:\n";
     cout << List << endl;
     List.printReverse();
-/*
 
+/*
     printf("MIN: %d\n",min(List));
     printf("MAX: %d\n",max(List));
     printf("POP: %d\n",pop(List,-1));
