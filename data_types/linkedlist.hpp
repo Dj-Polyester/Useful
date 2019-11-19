@@ -41,6 +41,7 @@ class list
         void swap(T &a,T &b);
         void invert();
         T pop(int index);
+        T pop();
         int max();
         int min();
         void removelist();
@@ -431,6 +432,23 @@ T list<T>::pop(int index)
                 current=current->pre;
 
         }
+        current->pre->next=current->next;
+        current->next->pre=current->pre;
+        T popdata=current->data;
+        delete [] current;
+        this->len--;
+        return popdata;
+    }
+    return 0;
+}
+
+template<class T>
+T list<T>::pop()
+{
+    if (this->len!=0)
+    {
+        node<T>* current=this->tail->pre;
+        
         current->pre->next=current->next;
         current->next->pre=current->pre;
         T popdata=current->data;

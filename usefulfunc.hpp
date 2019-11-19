@@ -1,8 +1,10 @@
 #ifndef _USEFULFUNC
 #define _USEFULFUNC
 
+
 #include "Stack.hpp"
 #include "Queue.hpp"
+#include <string>s
 
 /******************************************************************************************************
  * Each of the following 3 problems indicates what kind of structure to use as auxiliary storage.     *
@@ -41,4 +43,5 @@ bool equals(Stack<int>& s1, Stack<int>& s2);
  ******************************************************************************************************/
 void reorder(Queue<int>& q);
 
+string binaryAdd(string s1,string s2)
 #endif //_USEFULFUNC

@@ -223,3 +223,17 @@ string binaryAdd(string s1,string s2)
 
     return result;
 }
+
+
+int main()
+{
+
+	cout << addBinary("1010100","10010") << endl;
+
+
+
+}
+
+
+
+
