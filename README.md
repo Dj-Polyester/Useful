@@ -21,8 +21,8 @@ Files contents in order-roughly- as follows:
 
 -cpp.sh, a file for auto template generating
 
--insta and twitbot, auto-like bots for instagram and twitter(may be invalid now)
+-insta and twitbot, auto-like bots for instagram and twitter(may not work now, since websites update their DOMs)
 
--some matrix function (incomplete)
+-some matrix functions (incomplete)
 
 -some useful generic functions
