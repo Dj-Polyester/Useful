@@ -13,7 +13,7 @@ Files contents in order-roughly- as follows:
 
 -drawem, a drawing applicaiton UI
 
--a file encryptor(contains its decryptor, incomplete yet -open to contributors)
+-a file encryptor(contains a decryptor too, incomplete yet, open to contributors)
 
 -the classic snake game(curses env)
 
