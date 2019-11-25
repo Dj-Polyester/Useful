@@ -13,10 +13,12 @@
 
 using namespace std;
 
+//no is for double
 typedef double no;
+//M is matrix
 typedef vector<vector<no> > M;
+//V is vector
 typedef vector<no> V;
-
 
 void print_matrix(M vec2d);
 
@@ -81,6 +83,7 @@ M mult_matrices(M m1, M m2)
 M add_matrices(M m1, M m2)
 {
 	M m3;
+	no tmp_add;
 	size_t length1=m1.size();
 	
 	for(size_t i=0;i<length1;++i)
@@ -90,7 +93,8 @@ M add_matrices(M m1, M m2)
 		
 		for(size_t j=0;j<length2;j++)
 		{
-			tmp.push_back(m1[i][j]+m2[i][j]);
+			tmp_add=m1[i][j]+m2[i][j];
+			tmp.push_back(tmp_add);
 		}
 		m3.push_back(tmp);
 	}
@@ -114,19 +118,19 @@ void print_matrix(M vec2d)
 }
 
 
-M matrix(int m,int n, ...)
+M matrix(size_t m,size_t n, ...)
 {
 	M vec2d;
 	va_list iter;
 	va_start(iter,n);
-	no* vec;
+	const no* vec;
 	
-	for(int i=0;i<m;++i)
+	for(size_t i=0;i<n;++i)
 	{
 		V tmp;
 		vec=va_arg(iter, no*);
 		
-		for(int j=0;j<n;j++)
+		for(size_t j=0;j<m;j++)
 		{
 			tmp.push_back(vec[j]);
 		}
@@ -138,12 +142,12 @@ M matrix(int m,int n, ...)
 	return vec2d;
 }
 
-M matrix_rnd(int count,...)
+M matrix_rnd(size_t count,...)
 {
 	M vec2d;
 	time_t t;
-	int m,n;
-	no num,pow_rnd;
+	size_t m,n=1;
+	no num, pow_rnd;
 	
 	srand((unsigned) time(&t));
 	
@@ -158,19 +162,19 @@ M matrix_rnd(int count,...)
 		va_start(iter,count);
 		if(count==1)
 		{
-			m=va_arg(iter, int);
+			m=va_arg(iter, size_t);
 		}
 		else
 		{
-			m=va_arg(iter, int);
-			n=va_arg(iter, int);
+			m=va_arg(iter, size_t);
+			n=va_arg(iter, size_t);
 		}
 	}
-	for(int i=0;i<n;++i)
+	for(size_t i=0;i<n;++i)
 	{
 		V tmp;
 		
-		for(int j=0;j<m;j++)
+		for(size_t j=0;j<m;j++)
 		{
 			pow_rnd=(no)(rand()%2);
 			num=pow(-1,pow_rnd)*(no)(rand()%LIMIT);
@@ -183,6 +187,30 @@ M matrix_rnd(int count,...)
 	
 	return vec2d;
 
+}
+
+M exclude(size_t m,size_t n, size_t x, size_t y, M ma)
+{
+	M tmp_ma; no tmp_no;
+
+	for(size_t i=0;i<n;++i)
+	{
+		if(i!=x)
+		{
+			V tmp;
+			for(size_t j=0;j<m;j++)
+			{
+				if(j!=y) 
+				{
+					tmp_no=ma[i][j];
+					tmp.push_back(tmp_no);
+				}
+			}
+			tmp_ma.push_back(tmp);
+		}
+	}
+
+	return tmp_ma;
 }
 
 int main()
