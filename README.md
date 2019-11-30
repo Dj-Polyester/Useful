@@ -13,7 +13,7 @@ Files contents in order-roughly- as follows:
 
 -drawem, a drawing applicaiton UI
 
--a file encryptor(contains its decryptor, incomplete yet -open to contributors)
+-a file encryptor(contains a decryptor too, incomplete yet, open to contributors)
 
 -the classic snake game(curses env)
 
@@ -21,8 +21,8 @@ Files contents in order-roughly- as follows:
 
 -cpp.sh, a file for auto template generating
 
--insta and twitbot, auto-like bots for instagram and twitter(may be invalid now)
+-insta and twitbot, auto-like bots for instagram and twitter(may not work now, since websites update their DOMs )
 
--some matrix function (incomplete)
+-some matrix functions (incomplete)
 
 -some useful generic functions
