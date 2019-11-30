@@ -68,6 +68,7 @@ class binarytree {
         T leaves(Node<T>* &r);
         void insert(Node<T>* &r, T &val);
         void insert( const T& x, Node<T> *& t );
+        void insertHeap(Node<T>* &parent,Node<T>* &r, T& val);
         void remove(Node<T> *& r, T &val);
         void remove( const T& x, Node<T> *& t );
         void rotateL( Node<T> *& k2 );
@@ -77,6 +78,7 @@ class binarytree {
 
         int height(Node<T>* &r);
         bool contains(Node<T>* &r, T val);
+        bool full(Node<T>* &r);
 
     public:
         binarytree(Node<T> &n): root(&n) {}
@@ -173,7 +175,7 @@ void binarytree<T>::copyTree(Node<T> *&curr_r, const Node<T> *source_r)
 template <class T>
 void binarytree<T>::mode( std::string mod )
 {
-    Mode=(mod=="AVL"? 1 : 0);
+    Mode=(mod=="AVL"? 1 : (mod=="heap"? 2 : (mod=="normal"? 3: 0)));
 }
 
 template <class T>
@@ -280,7 +282,7 @@ T binarytree<T>::max()
 
 template<class T>
 T binarytree<T>::max(Node<T>* r){
-   if(Mode==2)
+   if(Mode==3 || Mode==2)//normal binary tree or heap
    {
         T root_val, left, right, max;
        
@@ -297,12 +299,12 @@ T binarytree<T>::max(Node<T>* r){
                max = left;
             else
                max = right;
-            if (root_val > max)
+            if (Mode==3 && root_val > max)
                max = root_val;
         }
         return max;
    }
-   else//binarytree
+   else//BST
    {
        while(r->right)
             r=r->right;
@@ -318,7 +320,7 @@ T binarytree<T>::min()
 
 template<class T>
 T binarytree<T>::min(Node<T>* r){
-    if(Mode==2)
+    if(Mode==3)//normal binary tree
     {
         T root_val, left, right, min;
         
@@ -340,8 +342,12 @@ T binarytree<T>::min(Node<T>* r){
         }
         return min;
     }
-    //binarytree
-    else
+   else if(Mode==2)//binary heap with min on the root
+   {
+        return r->data;
+   }
+    
+    else//BST
     {
         
         while(r->left)
@@ -428,9 +434,71 @@ bool binarytree<T>::contains(Node<T>* &r, T val){
 template<class T>
 void binarytree<T>::insert(T val)
 {
-    if(Mode) insert(val ,root);
-    else insert(root, val);
+    Node<T>* tmp;
+    if(Mode==1) insert(val ,root);//AVL
+    else if(Mode==2) insertHeap(tmp=NULL, root, val);
+    else insert(root, val);//BST
 
+}
+
+template<class T>
+bool binarytree<T>::full(Node<T>* &r)
+{
+    if(!r) return false;
+    //complete node
+    if(!r->left && !r->right)
+    {
+        return true;
+    }
+    //incomplete node
+    else if(!r->left || !r->right)
+    {
+        return false;
+    }
+    else if(full(r->left))
+    {
+        return full(r->right);
+    }
+    return false;
+    
+}
+
+template<class T>
+void binarytree<T>::insertHeap(Node<T>* &parent,Node<T>* &r, T& val)
+{
+    if(!r)
+    {
+        r=new Node<T>(val);
+    }
+    
+    if(full(r->left))//false if null
+    {
+        this->insertHeap(r,r->right,val);
+    }
+    else
+    {
+        this->insertHeap(r,r->left,val);
+    }
+    //swap values if current is smaller, not root and equals the value we insert
+    if(r->data==val && parent!=NULL && r->data < parent->data)
+    {
+        r->left = parent ->left;
+        r->right = parent ->right;
+        if(r->right)//r is on the right of the parent
+        {
+            r->right=parent;
+            parent->left=NULL;
+            parent->right=NULL;
+            parent=r;
+        }
+        else//on the left
+        {
+            r->left=parent;
+            parent->left=NULL;
+            parent->right=NULL;
+            parent=r;
+        } 
+    }
 }
 
 template<class T>
