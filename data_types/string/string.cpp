@@ -10,8 +10,7 @@ void String::set_data(const char* str)
     str_data = new char[length+1];
     str_data[length]='\0';
 
-    cout << "line 13: " << (length+1)*sizeof(char) << endl;
-
+    
     strcpy(str_data,str);
 }
 

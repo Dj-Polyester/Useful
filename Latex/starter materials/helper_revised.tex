@@ -1,0 +1,259 @@
+\documentclass[12pt]{article}                       %document class declaration - article with 12pt font size
+\usepackage[utf8]{inputenc}                         %input encoding - set to UTF8
+\usepackage{float}                                  %for control over floating objects - such as tables and figures
+\usepackage{hyperref}                               %easier URL reference
+\usepackage{amsmath}                                %mathematical facilities for LATEX by AMS
+\usepackage[hmargin=3cm,vmargin=6.0cm]{geometry}    %geometric properties of page - horizontal and vertical margins are set
+\topmargin=-2cm                                     
+\addtolength{\textheight}{7cm}                    
+\usepackage{setspace}                               
+\onehalfspacing                                     %mostly 1.5 spacing is preferred
+\usepackage{fitch}                                  %relatively easier natural deduction 
+
+\begin{document}
+
+%% TEXT NEWLINE BOLD ITALIC
+text                                %single enter in .TEX file does not result in a newline
+asdakjsdkahsdkahs
+text\\                              %'\\' starts from the next line
+new line                            %double enter is a new paragraph with indentation
+
+\textbf{bold}, \textit{italic}      %bold text and italic text
+
+\noindent
+\verb|\noindent| nullifies the indentation due to the double enter
+\paragraph{A new paragraph} begins with a leading vertical space
+
+
+%%  VSPACE HSPACE
+\vspace{20px}                       %vertical space determined manually
+\noindent
+there is a \hspace{20px} gap        %horizontal space
+
+
+%%  SECTIONS
+\section{Section - enumerated automatically}
+\subsection{Subsection}
+\subsubsection{Subsubsection}
+The font sizes of the headers are predetermined by \LaTeX.
+
+\section*{Section I}
+\subsection*{Subsection I.i}
+\subsubsection*{Subsubsection I.i.a}
+By using $*$ we ask from \verb|pdflatex| not to use automatic enumeration
+
+
+
+%%  MATH MODE -- IN LINE
+\vspace{20px}
+\section*{Math Mode}
+\subsection*{In-line}
+\noindent
+text character x vs. the variable $x$\\
+\textbf{subscript}: $x_n$ $x_{ik}$, $s'_i$ , \textbf{superscript} : $x^k$,\\
+\textbf{\textit{both}}: $x_i^k$\\                   %nested bold and italized is also valid
+big operator with lower and upper indexes:\\
+$\sum_i=1^N x_i^2$ versus $\sum_{i=1}^N x_i^2$      %be careful with the brackets
+%                               ^   ^
+
+
+
+
+%% MATH MODE -- EQUATIONS
+\subsection*{Equations}
+\[ \sum_{i=1}^N x_i^2 \]
+\[ \nabla \cdot \vec{E} = \frac{\rho}{\epsilon_0} \] 
+we cannot refer to this equation. To do so we start an equation environment:
+\begin{equation}
+    \nabla \cdot \vec{E} = \frac{\rho}{\epsilon_0}
+    \label{eq:maxwell_electrical_source}
+\end{equation}
+We can refer to \eqref{eq:maxwell_electrical_source} by using \verb|\label| and \verb|\eqref|.\\
+Sometimes, eqref cannot link the labelled sections properly, if this happens you can recompile.
+
+% test these by yourselves by uncommenting
+%\begin{equation} 
+%\begin{split}
+% E(x) & = \int f(x) dx \\
+% & = \int x^2 dx
+%\end{split}
+%\label{eq1}
+%\end{equation}
+%
+%grouping and centering equations :
+%\begin{gather*} 
+%2x - 5y =  8 \\ 
+%3x^2 + 9y =  3a + c
+%\end{gather*}
+ 
+
+
+
+%%  MATH MODE -- SPACES
+\vspace{20px}
+\subsection*{Spacing}
+\noindent
+you cannot put spaces like this in math mode $x  =    y   +   4$\\
+you can put spaces with special characters like:
+\begin{verbatim}
+\ \quad \qquad 
+\end{verbatim}
+example of spacing in math mode $ x \ = \quad x \qquad + \ 1$
+
+
+
+
+%%  ITEMIZE ENUMERATE
+\vspace{20px}
+\section*{Itemize and Enumerate}
+\begin{itemize}
+    \item item 1
+    \item item 2 
+\end{itemize}
+
+\begin{enumerate}
+	\item item
+	\item item 
+\end{enumerate}
+
+
+
+%%%%TABLES%%%%
+\vspace{20px}
+\section*{Tables}
+tables: easy construction yet exhausting due to placement issues 
+
+\begin{table}%[H]
+\small
+\centering
+\caption{Sample table}
+\label{table:example}
+\begin{tabular}{|c|c|c|c|c|c|}	%% specify column number and vertical lines
+\hline 							%% line draw
+\textbf{title1} & \textbf{title2} & \textbf{title3} & \textbf{title4} & \textbf{title5} & \textbf{title6} \\
+\hline 
+\hline 
+text & 0 & text & 20 & text & $a_0$\\			%% separate columns by &
+text & 0 & & & & \\
+text & 0 & $foo$ & 0 & $\pi(s = 1)$ & $a_2$\\
+ &  & $foo$ & 0 & $\pi(s = 3)$ & $\emptyset$\\
+\hline 
+
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+	\centering
+    \caption{Answer to the 5th question from 2016's THE1 -- \textit{creating boxes are tiring}}
+	\begin{tabular}{*6{l}}
+		$1$ & & & $\exists x (P(x) \rightarrow Q(a))$ & \textit{premise} & \\ \cline{2-6}
+		
+		$2$ &\multicolumn{1}{|c}{} & & $\forall y P(y)$ &\textit{assumption} &\multicolumn{1}{c|}{}\\ \cline{3-5}
+		 
+		$3$ &\multicolumn{1}{|c}{}&\multicolumn{1}{|c}{$x_0$}& $P(x_0) \rightarrow Q(a)$ &\multicolumn{1}{l|}{\textit{assumption}}&\multicolumn{1}{c|}{}\\ 
+		
+		$4$ &\multicolumn{1}{|c}{}&\multicolumn{1}{|c}{}& $P(x_0)$ &\multicolumn{1}{l|}{$\forall y$e $2$}&\multicolumn{1}{c|}{}\\
+		
+		$5$ &\multicolumn{1}{|c}{}&\multicolumn{1}{|c}{}& $Q(a)$ & \multicolumn{1}{c|}{$\rightarrow$e $3,4$} &\multicolumn{1}{c|}{}\\ \cline{3-5}
+		
+		$6$ &\multicolumn{1}{|c}{}& & $Q(a)$ & $\exists$e $1,3-5$ & \multicolumn{1}{c|}{}\\ \cline{2-6}
+		
+		$7$ & & & $\forall y P(y) \rightarrow Q(a)$ & $\rightarrow$i $2-6$ & \\
+	
+	\end{tabular}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\caption{Things of these kind are also accepted as long as you make it clear where your assumption boxes end.}
+	\begin{tabular}{*4{l}}
+		$1$ & & $\exists x (P(x) \rightarrow Q(a))$ & \textit{premise} \\ \hline \hline     %double hline call for the outer
+		
+		$2$ & & $\forall y P(y)$ &\textit{assumption} \\ \hline                             %single hline call for the inner
+		
+		$3$ & $x_0$ & $P(x_0) \rightarrow Q(a)$ &\textit{assumption}\\ 
+		
+		$4$ & & $P(x_0)$ &$\forall y$e $2$\\
+		
+		$5$ & & $Q(a)$ & $\rightarrow$e $3,4$\\ \hline                                      %single hline call for the inner
+		                                                                                                                     
+		$6$ & & $Q(a)$ & $\exists$e $1,3-5$ \\  \hline \hline                               %double hline call for the outer
+		
+		$7$ & & $\forall y P(y) \rightarrow Q(a)$ & $\rightarrow$i $2-6$ \\
+		
+	\end{tabular}
+\end{table}
+\vspace{20px}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{*6{l}}
+	$1$ & & & $\exists x (P(x) \rightarrow Q(a))$ & \textit{premise} & \\ \cline{2-6}
+	
+	$2$ & & & $\forall y P(y)$ &\textit{assumption} & \\ \cline{3-5}
+	
+	$3$ & & $x_0$ & $P(x_0) \rightarrow Q(a)$ &\textit{assumption}& \\ 
+	
+	$4$ & & & $P(x_0)$ &$\forall y$e $2$&\\
+	
+	$5$ & & & $Q(a)$ & $\rightarrow$e $3,4$&\\ \cline{3-5}
+	
+	$6$ & & & $Q(a)$ & $\exists$e $1,3-5$ & \\ \cline{2-6}
+	
+	$7$ & & & $\forall y P(y) \rightarrow Q(a)$ & $\rightarrow$i $2-6$ & \\
+\end{tabular}
+\end{table}
+
+%Fitch environment
+\vspace{20px}
+\section*{Fitch.sty}
+You can also use the style package \verb|fitch.sty| which is much easier to manage
+\begin{equation*}
+\begin{fitch}
+    \fh \exists x (P(x) \rightarrow Q(a))                   & premise \\
+    \fa \fh \forall y P(y)                                  & assumption \\
+    \fa \fa \fitchmodal{x_0} P(x_0) \rightarrow Q(a)        & \\
+    \fa \fa \fa P(x_0)                                      & $\forall$e, 2 \\
+    \fa \fa \fa Q(a)                                        & $\rightarrow$e, 3,4\\
+    \fa \fa Q(a)                                            & $\exists$e, 1,3-5\\
+    \fa \forall y P(y) \rightarrow Q(a)                     & $\rightarrow$i, 2-6
+\end{fitch}
+\end{equation*}
+
+\noindent
+See \href{https://github.com/cbcafiero/fitchsty/blob/master/fitchdoc.pdf}{here} for a
+    documentation of fitch version 0.5.\\
+At the time fitch.sty is not available on \verb|inek|s.\\
+To install it locally either compile with the file \verb|fitch.sty| under the same
+    directory as your .tex file, or move it to somewhere where \verb|pdflatex| usually
+    checks.\\
+For \verb|fitch.sty| this would be \verb|$HOME/texmf/tex/latex/fitch/|.
+
+\vspace{20px}
+\noindent
+You might instead use the style package \verb|logicproof.sty| useful which is readily
+    available at \verb|inek|s.\\
+See \href{https://tex.stackexchange.com/questions/268079/fitch-style-predicate-logic-proof}{this link}.
+
+\section*{Connecting to ineks using \textit{ssh} and \textit{sftp}}
+Upload your files using \verb|sftp| and compile them at an \verb|inek|.\\
+Do not forget to upload \verb|fitch.sty| if you are using it.
+\begin{verbatim}
+@local>> cd $ASSIGNMENT_PATH
+@local>> sftp -P 8085 eXXXXXXX@divan.ceng.metu.edu.tr
+[yes]
+(password)
+@divan>> put fitch.sty
+@divan>> put the1.tex
+@divan>> exit
+@local>> ssh eXXXXXXX@divan.ceng.metu.edu.tr -p 8085
+[yes]
+(password)
+@divan>> ssh inek1
+[yes]
+(password)
+@inek1>> pdflatex *.tex
+@inek1>> ls
+(the1.pdf should be among the listed)
+\end{verbatim}
+
+\end{document}

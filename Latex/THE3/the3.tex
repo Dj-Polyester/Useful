@@ -1,0 +1,253 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+
+\usepackage[hmargin=3cm,vmargin=6.0cm]{geometry}
+%\topmargin=0cm
+\topmargin=-2cm
+\addtolength{\textheight}{6.5cm}
+\addtolength{\textwidth}{2.0cm}
+%\setlength{\leftmargin}{-5cm}
+\setlength{\oddsidemargin}{0.0cm}
+\setlength{\evensidemargin}{0.0cm}
+
+\setlength{\parindent}{4em}
+\setlength{\parskip}{1em}
+\renewcommand{\baselinestretch}{1.5}
+
+%misc libraries goes here
+
+
+
+\begin{document}
+
+\section*{Student Information } 
+%Write your full name and id number between the colon and newline
+%Put one empty space character after colon and before newline
+Full Name : Batuhan Karaca \\
+Id Number : 2310191 \\
+
+% Write your answers below the section tags
+\section*{Answer 1}
+
+We know if $a \equiv 1\ (mod\ p)$ , $a^{2}\ mod\ p = (a\ mod\ p)(a\ mod\ p) = 1$.
+Similarly, $a^{3}\ mod\ p = (a^{2}\ mod\ p)(a\ mod\ p) = 1$, $a^{4}\ mod\ p = (a^{3}\ mod\ p)(a\ mod\ p)$. 
+We have: \\ \\
+\begin{tabular}{l}
+    $a^{n}\ mod\ p = (a^{n-1}\ mod\ p)(a\ mod\ p) = 1 \quad (n \in \mathbb{Z^{+}})$\\
+    $a^{n} \equiv 1\ (mod\ p)$ \\
+\end{tabular}
+\\ \\
+We know, $x^{y} \equiv 1\ (mod\ p)$. Substituting:
+\\ \\
+\begin{tabular}{l}
+    $(x^{y})^{n} \equiv 1\ (mod\ p)$\\
+    $x^{ny} \equiv 1\ (mod\ p)$\\
+\end{tabular}
+\\ \\
+Assume, there exists $b \in \mathbb{Z^+}$ such that $y \nmid b$, $b>y$ and $x^{b} \equiv 1\ (mod\ p)$.
+Then $b$ is of the form $n_0y+k$ such that $k,n_0 \in \mathbb{Z^+}$ and $k < y$:
+\\ \\
+\begin{tabular}{l}
+    $x^{n_0y+k} \equiv 1\ (mod\ p)$\\
+    $x^{n_0y}x^{k} \equiv 1\ (mod\ p)$\\
+    $x^{n_0y}x^{k}\ mod\ p = (x^{n_0y}\ mod\ p)(x^{k}\ mod\ p) = (x^{k} mod\ p)$\\
+    $x^{k} \equiv 1\ (mod\ p)$\\
+\end{tabular}
+\\ \\
+However, since $k < y$ and $k \neq 0$, this is not the case. Hence by contradiction, 
+every $s \in \mathbb{Z^+}$ satisfying $x^s \equiv 1 (mod\ p)$ is of the form $ny$.
+\\ \\
+Since $p$ is prime such that $p \nmid x$, by Fermat's Little Theorem:
+\\ \\
+\begin{tabular}{l}
+    $x^{p-1} \equiv 1\ (mod\ p)$\\
+\end{tabular}
+\\ \\
+Since $p$ is prime, $p > 1$ then $p-1 \in \mathbb{Z^+}$. Furthermore $p$ satisfies $x^{p-1} \equiv 1\ (mod\ p)$.
+Then $p-1$ is in the set $S=\{s\ |\ s=ny\}$. Then for some $n=k$:
+\\ \\
+\begin{tabular}{l}
+    $p-1=ky$\\
+    $(p-1)/y=k$\\
+\end{tabular}
+\\ \\
+Since $k \in \mathbb{Z^+}$, $y\ |\ p-1$.
+
+\section*{Answer 2}
+Assume $p(n)=2n^2+10n-7$
+\\ \\
+\begin{tabular}{l}
+    $p(n)=2n^2+10n-7$\\
+    $p(n)=2n^2+10n-72+65$\\
+    $p(n)=(2n+18)(n-4)+65$\\
+    $p(n)=2(n+9)(n-4)+65$\\
+\end{tabular}
+\\ \\
+The Fundemental Theorem Of Arithmetic is defined as
+\\ \\
+\begin{tabular}{l}
+    \textit{Every integer greater than 1
+    can be written uniquely as a prime or as the product of two or }\\
+    \textit{more primes, where the prime
+    factors are written in order of nondecreasing size.}\\
+\end{tabular}
+\\ \\
+In the textbook (8th Edition) page 272. Then:
+\\ \\
+\begin{tabular}{l}
+    $p(n)=p_0^{a_0}*p_1^{a_1}*p_2^{a_2}*...*p_k^{a_k} \quad (a_i \in \mathbb{N})\ (1)$\\
+\end{tabular}
+\\ \\
+such that $p_i$ is in the set of prime numbers and $p_i < p_{i+1}$.
+Another theorem from the textbook, page 252 (8th Edition), Theorem 1:
+\\ \\
+\begin{tabular}{l}
+    \textit{Let $a$, $b$, and $c$ be integers, where $a \neq 0$. Then}\\
+    \textit{if $a\ |\ b$ and $a\ |\ c$, then $a\ |\ (b + c)$}$\quad (2)$\\
+\end{tabular}
+\\ \\
+Assume for every $n \in \mathbb{Z^+}$ satisfying $13\ |\ p(n)$ holds. Then since $13\ |\ p(n)$ and $13\ |\ -65$,
+\begin{tabular}{l}
+    $13\ |\ p(n)-65$\\
+    $13\ |\ 2(n+9)(n-4)$\\
+    $13\ |\ (n+9)(n-4) \quad (since\ 13 \nmid 2)$
+\end{tabular}
+\\ \\
+Since $13$ is a prime number, at least one of the set $\{(n+9),(n-4)\}$ is divisible by $13$.
+Since $(n+9)=(n-4)+13$ and $(n-4)=(n+9)+(-13)$, similarly by $(2)$, if $13\ |\ (n-9)$ it also divides $13\ |\ (n-4)$ and
+vice versa. Hence $169\ |\ (n+9)(n-4)$, but $169\ \nmid 2$ and $169\ \nmid 65$, we have
+\\ \\
+\begin{tabular}{l}
+    $p(n)\equiv 65\ (mod\ 169)$\\
+\end{tabular}
+\\ \\
+for some $t \in \mathbb{N}$. Furthermore:
+\\ \\
+\begin{tabular}{l}
+    $p(n) \equiv 2(n+9)(n-4)\ (mod\ 13)$\\
+\end{tabular}
+\\ \\
+Assume for every $n \in \mathbb{Z^+}$ satisfying $13 \nmid p(n)$ holds. Then using $(1)$
+\\ \\
+\begin{tabular}{l}
+    $p(n)=p_0^{a_0}*p_1^{a_1}*p_2^{a_2}*...*13^{0}*...*p_k^{a_k} \quad (a_i \in \mathbb{N})\ (1)$\\
+\end{tabular}
+\\ \\
+If $169\ |\ p(n)$:
+\\ \\
+\begin{tabular}{l}
+    $p(n)=p_0^{a_0}*p_1^{a_1}*p_2^{a_2}*...*13^{2+t}*...*p_k^{a_k} \quad (a_i \in \mathbb{N})\ (1)$\\
+\end{tabular}
+\\ \\
+for some $t \in \mathbb{N}$. However, $t+2\geq 2 > 0$. Then by contradiction, $169\nmid  p(n)$
+\\ \\
+We proved $169\nmid p(n)$ for every $n \in \mathbb{Z^+}$ satisfying $13\ |\ p(n)$ holds, and 
+for every $n \in \mathbb{Z^+}$ satisfying $13 \nmid p(n)$ holds .
+Since every $n \in \mathbb{Z^+}$ satisfying $13\ |\ p(n)$ or $13 \nmid p(n)$ comprise the set 
+$\mathbb{Z^+}$, we proved for every $n \in \mathbb{Z^+}$, $169\nmid p(n)$.
+\\ \\
+\section*{Answer 3}
+Since $a \equiv b\ (mod\ m)$, $m\ |\ a-b$, and since $a \equiv b\ (mod\ n)$, $n\ |\ a-b$.
+
+The Fundemental Theorem Of Arithmetic is defined as
+\\ \\
+\begin{tabular}{l}
+    \textit{Every integer greater than 1
+    can be written uniquely as a prime or as the product of two or }\\
+    \textit{more primes, where the prime
+    factors are written in order of nondecreasing size.}\\
+\end{tabular}
+\\ \\
+In the textbook (8th Edition) page 272. Then we can write \underline{for all} $i \in \mathbb{N}$
+\\ \\
+\begin{tabular}{l}
+    $m=p_0^{a_0}*p_1^{a_1}*p_2^{a_2}*...*p_k^{a_k} \quad (a_i \in \mathbb{N})$ \\
+    $n=p_0^{c_0}*p_1^{c_1}*p_2^{c_2}*...*p_k^{c_k} \quad (c_i \in \mathbb{N})$ \\
+\end{tabular}
+\\ \\
+such that $p_i$ is in the set of prime numbers and $p_i < p_{i+1}$. We know
+\\ \\
+\begin{tabular}{l}
+    $gcd(m,n)=p_0^{min(a_0,c_0)}*p_1^{min(a_1,c_1)}*p_2^{min(a_2,c_2)}*...*p_k^{min(a_k,c_k)}=1$ \\
+\end{tabular}
+\\ \\
+Since $a_i,c_i \in \mathbb{N}$, $min(a_i,c_i) \in \mathbb{N}$. 
+If $min(a_j,c_j) \neq 0$ for some $j$, $gcd(m,n) > 1$. However, $gcd(m,n) = 1$. 
+Hence by contradiction, $min(a_j,c_j) = 0$. Then $a_i$ or $c_i$ is zero. We have also
+\\ \\
+\begin{tabular}{l}
+    $lcm(m,n)=p_0^{max(a_0,c_0)}*p_1^{max(a_1,c_1)}*p_2^{max(a_2,c_2)}*...*p_k^{max(a_k,c_k)}$ \\
+    $lcm(m,n)=p_0^{z_0}*p_1^{z_1}*p_2^{z_2}*...*p_k^{z_k}$ \\
+\end{tabular}
+\\ \\
+such that $z_i$ is $a_i$ or $c_i$.
+We know $m\ |\ a-b$, then $p_i^{a_i}\ |\ a-b$ and $n\ |\ a-b$, then $p_i^{c_i}\ |\ a-b$. 
+Then $a-b$ has prime factor $p_i^{d_i}$ such that $p_i^{a_i}\ |\ p_i^{d_i}$ and $p_i^{c_i}\ |\ p_i^{d_i}$, 
+hence $d_i \geq max(a_i,c_i)$, which is
+$d_i \geq z_i$. Since we also know $a_i$ or $c_i$ is zero, $a_i+c_i=z_i$. We have
+$d_i \geq a_i + c_i$. Then $p_i^{a_i + c_i}\ |\ p_i^{d_i}$, hence $p_i^{a_i + c_i}\ |\ a-b$. We know
+\\ \\
+\begin{tabular}{l}
+    $mn=p_0^{a_0 + c_0}*p_1^{a_1 + c_1}*p_2^{a_2 + c_2}*...*p_k^{a_k + c_k}$ \\
+\end{tabular}
+\\ \\
+Then $mn\ |\ a-b$. Hence $a\equiv b\ (mod\ mn)$. Emphasizing on the fact that $i$ represents every natural number.
+\\ \\
+\section*{Answer 4}
+Assume $P(n,k)=\sum_{j=1}^{n} \prod_{i=0}^{k-1} (j+i)$ and $Q(n,k)=\frac{(n+k)!}{(n-1)!(k+1)}$.
+\\ \\
+\textbf{BASIS STEP}\\
+\begin{tabular}{l}
+    $P(1,k)=\sum_{j=1}^{1} \prod_{i=0}^{k-1} (j+i)=\prod_{i=0}^{k-1} (1+i)=k!$\\
+    $Q(1,k)=\frac{(1+k)!}{0!(k+1)}=k!$\\
+    $P(1,k)=Q(1,k) \quad (\forall k \in \mathbb{Z^+})$\\
+\end{tabular}
+\\ \\
+\textbf{INDUCTIVE STEP}\\
+Assume $P(n,k)=Q(n,k) \quad (\forall n,k \in \mathbb{Z^+})$.
+\\ \\
+\begin{tabular}{l}
+    $P(n+1,k)=\sum_{j=1}^{n+1} \prod_{i=0}^{k-1} (j+i)=\sum_{j=1}^{n} \prod_{i=0}^{k-1} (j+i)+\frac{(n+k)!}{n!}$\\
+    $P(n+1,k)=P(n,k)+\frac{(n+k)!}{n!}$\\
+    $P(n+1,k)=Q(n,k)+\frac{(n+k)!}{n!}$\\
+    $P(n+1,k)=\frac{(n+k)!}{(n-1)!(k+1)}+\frac{(n+k)!}{n!}$\\
+    $P(n+1,k)=\frac{(n+k)!}{(n-1)!}(\frac{1}{k+1}+\frac{1}{n})$\\
+    $P(n+1,k)=\frac{(n+k)!}{(n-1)!}(\frac{n+k+1}{n(k+1)})$\\
+    $P(n+1,k)=\frac{(n+k+1)!}{n!(k+1)}=\frac{(n+1+k)!}{n!(k+1)}=Q(n+1,k)$\\
+    $P(n+1,k)=Q(n+1,k)$\\
+    $(P(n,k)=Q(n,k)) \rightarrow (P(n+1,k)=Q(n+1,k))$\\
+\end{tabular}
+\\ \\
+Since $P(1,k)=Q(1,k)$ and $(P(n,k)=Q(n,k)) \rightarrow (P(n+1,k)=Q(n+1,k))$ hold for all $n,k \in \mathbb{Z^+}$,
+by induction, $P(n,k)=Q(n,k)$ for all $n,k \in \mathbb{Z^+}$.
+\\ \\
+\section*{Answer 5}
+\textbf{BASIS STEP}\\
+$H_0=1 \leq 7^{1}=7$, $H_1=3 \leq 7^{3}=343$ and $H_2=5 \leq 7^{5}=16807$.
+\\ \\
+\textbf{INDUCTIVE STEP}\\
+Assume for all $a \in \{1,2,3,...,k\}, H_a \leq 7^{a}$. We have:
+\\ \\
+\begin{tabular}{l}
+    $H_{k+1}=5H_{k}+5H_{k-1}+63H_{k-2}$\\
+    $H_{k} \leq 7^{k} \rightarrow 5H_{k} \leq 5(7^{k}) \quad (1)$\\
+    $H_{k-1} \leq 7^{k-1} \rightarrow 5H_{k-1} \leq 5(7^{k-1}) \quad (2)$\\
+    $H_{k-2} \leq 7^{k-2} \rightarrow 63H_{k-2} \leq 63(7^{k-2}) \quad (3)$\\
+\end{tabular}
+\\ \\
+Summing right sides of $(1), (2), (3)$:
+\\ \\
+\begin{tabular}{l}
+    $H_{k+1}=5H_{k}+5H_{k-1}+63H_{k-2} \leq 5(7^{k})+5(7^{k-1})+63(7^{k-2})$\\
+    $H_{k+1} \leq 7^{k-2}(5(7^{2})+5(7)+63)$\\
+    $H_{k+1} \leq 7^{k-2}(343)$\\
+    $H_{k+1} \leq 7^{k-2}(7^{3})$\\
+    $H_{k+1} \leq 7^{k+1}$\\
+\end{tabular}
+\\ \\
+Completes the proof.
+\end{document}

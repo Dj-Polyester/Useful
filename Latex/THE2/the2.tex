@@ -1,0 +1,375 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{logicproof}
+\usepackage[hmargin=3cm,vmargin=6.0cm]{geometry}
+\usepackage{amsfonts}
+
+%\topmargin=0cm
+\topmargin=-2cm
+\addtolength{\textheight}{6.5cm}
+\addtolength{\textwidth}{2.0cm}
+%\setlength{\leftmargin}{-5cm}
+\setlength{\oddsidemargin}{0.0cm}
+\setlength{\evensidemargin}{0.0cm}
+
+
+\begin{document}
+
+\section*{Student Information } 
+%Write your full name and id number between the colon and newline
+%Put one empty space character after colon and before newline
+Full Name : Batuhan Karaca \\
+Id Number : 2310191 \\
+
+% Write your answers below the section tags
+\section*{Answer 1}
+\begin{flushleft}
+    \textbf{a)} 
+\end{flushleft}
+%begin subheaders
+\begin{flushleft}
+    \textbf{i)} $D=A \cap (B \cup C)$
+\end{flushleft}
+\begin{flushleft}
+    \textbf{ii)} $E=(A \cap B) \cup C$
+\end{flushleft}
+\begin{flushleft}
+    \textbf{iii)} $D=(A - B) \cup (A \cap C)$
+\end{flushleft}
+\begin{flushleft}
+    \textbf{b)} 
+\end{flushleft}
+%begin subheaders
+\begin{flushleft}
+    \textbf{i)} 
+\end{flushleft}
+\begin{logicproof}{2}
+    (A \times B) \times C = A \times (B \times C) & premise\\
+    \begin{subproof}
+        \forall x (x \in ((A \times B) \times C)) & assumption\\
+        \forall x (x \in \{(a,b,c)|((a \in A) \land (b \in B)) \land (c \in C) \}) & definition of the cartesian product\\
+        \forall x (x \in \{(a,b,c)|(a \in A) \land ((b \in B) \land (c \in C)) \}) & associativity\\
+        \forall x (x \in (A \times (B \times C))) & definition of the cartesian product
+    \end{subproof}
+    \forall x ((x \in ((A \times B) \times C)) \rightarrow (x \in A \times (B \times C))) & $\rightarrow\mathrm{i}$,2--5\\
+    (A \times B) \times C \subseteq A \times (B \times C) & definition of the subset\\
+    \begin{subproof}
+        \forall x (x \in (A \times (B \times C)) & assumption\\
+        \forall x (x \in \{(a,b,c)|(a \in A) \land ((b \in B) \land (c \in C)) \}) & definition of the cartesian product\\
+        \forall x (x \in \{(a,b,c)|((a \in A) \land (b \in B)) \land (c \in C) \}) & associativity\\
+        \forall x (x \in ((A \times B) \times C)) & definition of the cartesian product
+    \end{subproof}
+    \forall x ((x \in (A \times (B \times C))) \rightarrow (x \in (A \times B) \times C)) & $\rightarrow\mathrm{i}$,8--11\\
+    A \times (B \times C) \subseteq (A \times B) \times C & definition of the subset\\
+    (A \times B) \times C = A \times (B \times C)
+\end{logicproof}
+
+\begin{flushleft}
+    \textbf{ii)} 
+\end{flushleft}
+
+\begin{logicproof}{2}
+    (A \cap B) \cap C = A \cap (B \cap C) & premise\\
+    \begin{subproof}
+        \forall x (x \in ((A \cap B) \cap C)) & assumption\\
+        \forall x (x \in \{x|((x \in A) \land (x \in B)) \land (x \in C) \}) & definition of the intersection\\
+        \forall x (x \in \{x|(x \in A) \land ((x \in B) \land (x \in C)) \}) & associativity\\
+        \forall x (x \in (A \cap (B \cap C))) & definition of the intersection
+    \end{subproof}
+    \forall x ((x \in ((A \cap B) \cap C)) \rightarrow (x \in A \cap (B \cap C))) & $\rightarrow\mathrm{i}$,2--5\\
+    (A \cap B) \cap C \subseteq A \cap (B \cap C) & definition of the subset\\
+    \begin{subproof}
+        \forall x (x \in (A \cap (B \cap C)) & assumption\\
+        \forall x (x \in \{x|(x \in A) \land ((x \in B) \land (x \in C)) \}) & definition of the intersection\\
+        \forall x (x \in \{x|((x \in A) \land (x \in B)) \land (x \in C) \}) & associativity\\
+        \forall x (x \in ((A \cap B) \cap C)) & definition of the intersection
+    \end{subproof}
+    \forall x ((x \in (A \cap (B \cap C))) \rightarrow (x \in (A \cap B) \cap C)) & $\rightarrow\mathrm{i}$,8--11\\
+    A \cap (B \cap C) \subseteq (A \cap B) \cap C & definition of the subset\\
+    (A \cap B) \cap C = A \cap (B \cap C)
+\end{logicproof}
+\begin{flushleft}
+    \textbf{iii)} 
+\end{flushleft}
+% \begin{logicproof}{4}
+%     (A \oplus B) \oplus C = A \oplus (B \oplus C) & premise\\
+%     \begin{subproof}
+%         1) x \in (A \oplus B) \oplus C & \\
+%         \begin{subproof}
+%             x \in A \oplus B & assumption\\
+%             \begin{subproof}
+%                 x \in A & assumption\\
+%                 x \in A \oplus (B \oplus C) &
+%             \end{subproof}
+%             \begin{subproof}
+%                 x \in B & assumption\\
+%                 x \in B \oplus C & \\
+%                 x \in A \oplus (B \oplus C) &
+%             \end{subproof}
+%             x \in A \oplus (B \oplus C) & 
+%         \end{subproof}
+%         \begin{subproof}
+%             x \in C & assumption\\
+%             x \in B \oplus C &\\
+%             x \in A \oplus (B \oplus C) &
+%         \end{subproof}
+%         (A \oplus B) \oplus C \subseteq A \oplus (B \oplus C) &
+%     \end{subproof}
+%     \begin{subproof}
+%         2) x \in A \oplus (B \oplus C) & \\
+%         \begin{subproof}
+%             x \in B \oplus C & assumption\\
+%             \begin{subproof}
+%                 x \in C & assumption\\
+%                 x \in (A \oplus B) \oplus C &
+%             \end{subproof}
+%             & \\
+%             \begin{subproof}
+%                 x \in B & assumption\\
+%                 x \in A \oplus B & \\
+%                 x \in (A \oplus B) \oplus C &
+%             \end{subproof}
+%             x \in (A \oplus B) \oplus C &
+%         \end{subproof}
+%         \begin{subproof}
+%             x \in A & assumption\\
+%             x \in A \oplus B &\\
+%             x \in (A \oplus B) \oplus C &
+%         \end{subproof}
+%         A \oplus (B \oplus C) \subseteq (A \oplus B) \oplus C &
+%     \end{subproof}
+%     A \oplus (B \oplus C) = (A \oplus B) \oplus C &
+% \end{logicproof}
+
+\begin{tabular}{|l|l|l|l|l|l|l|}
+    \hline
+    $A$&$B$ &$C$ & $A \oplus B$ &$B \oplus C$ &$(A \oplus B) \oplus C$ &$A \oplus (B \oplus C)$ \\
+    \hline
+    $1$ & $1$ & $1$ & $0$ & $0$ & $1$ & $1$ \\
+    \hline
+    $1$ & $1$ & $0$ & $0$ & $1$ & $0$ & $0$ \\
+    \hline
+    $1$ & $0$ & $1$ & $1$ & $1$ & $0$ & $0$ \\
+    \hline
+    $1$ & $0$ & $0$ & $1$ & $0$ & $1$ & $1$ \\
+    \hline
+    $0$ & $1$ & $1$ & $1$ & $0$ & $0$ & $0$ \\
+    \hline
+    $0$ & $1$ & $0$ & $1$ & $1$ & $1$ & $1$ \\
+    \hline
+    $0$ & $0$ & $1$ & $0$ & $1$ & $1$ & $1$ \\
+    \hline
+    $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ \\
+    \hline
+\end{tabular}
+\begin{flushleft}
+    $\>\>\>\>\>$By the membership table above, $(A \oplus B) \oplus C = A \oplus (B \oplus C)$.
+\end{flushleft}
+
+\section*{Answer 2}
+\begin{flushleft}
+    \textbf{a)}$f(S)=\{t|\exists(s \in S) (t=f(s))\}$ defined in the book. Since $f$ is $A \rightarrow B$ and $A_0 \in A$,
+\end{flushleft}
+\begin{tabular}{l l}
+    & $f(A_0)=\{t|\forall(s \in A_0) (t=f(s))\}$.$f^{-1}(f(A_0))  (i)$\\
+\end{tabular}
+\begin{flushleft}
+    If $f$ is not injective:
+\end{flushleft}
+\begin{tabular}{l l}
+    & $ \exists (x \in A_0) \exists (y \in A_0) \exists (z \in f(A_0)) ((x \neq y) \land (f(x)=f(y)=z))$\\
+\end{tabular}
+\begin{flushleft}
+    $\>\>\>\>\>$Since $f$ is a function $A \rightarrow B$, there exists no $p,t \in A$ such that, $f(p)=r,f(t)=s \in B$ is undefined.
+    Since $A_0 \in A$, if $p,t \in A_0$, then $p,t \in A$ $(argument 1)$.
+    For the value $z$, there are more than one preimages since $x \neq y$ such that $f^{-1}(z)={x,y} (case 1)$.
+    Since $f$ is not injective, the set $S=f(A_0)$ includes such value $z$.
+    For any set $A_0$, every function $g: A_0 \rightarrow S=f(A_0)$ is surjective. 
+    Then, every element $r, s$ in the set $S$ is mapped to its multiple -more than one in quantity $(case 1)$- preimages $\{p_0,p_1,...\}, \{t_0,t_1,...\}$; or a single -one in quantity, which is $x=y,then f^{-1}(z)=x=y$- preimage $p, t$ under $f^{-1}$ $(argument 2)$. 
+    
+    By $(argument 1)$ and $(argument 2)$, the set comprised of such elements $p_x, t_x$, is $A_0$.Then $f^{-1}(S)=A_0$
+    Hence, $f{-1}(f(A_0))=A_0$. Since every set is a subset of its own, $A_0 \subseteq f(f^{-1}(A_0))$.
+\end{flushleft}
+\begin{flushleft}
+    $\>\>\>\>\>$If $f$ is injective, since we introduced the cases for every $x, y \in A_0$ which result in $f(f^{-1}(A_0))=A_0$, case with the single preimage will also hold this equality- Because this case is the subcase.
+\end{flushleft}
+
+\begin{flushleft}
+    \textbf{b)}If $f$ is not surjective:
+\end{flushleft}
+\begin{tabular}{l l}
+    & $ \exists (x \in B_0) \exists (y \in B-B_0) \forall (z \in A) ((f(z) \neq x) \lor (f(z) \neq y))$\\
+\end{tabular}
+\begin{flushleft}
+    $\>\>\>\>\>$(i) If the set includes such $x$, then some elements in $B_0$ can not be mapped to its preimage(s)-single and multiple, defined in part(a).
+    For every element that has a single preimage $z$ or multiple preimages $\{z_0,z_1,z_2,...\}$, since there may exist some $t \in B-B_0$ that has a preimage some $z \in A-A_0$, some $z$ is a member of a set $S \subseteq A$. Then we have the set $f^{-1}(B_0)=S \subseteq A$.
+    Since there are some $x \in B_0$ that $f$ maps no $z$ to, we have $f(S) \subset B_0$. We have, in this case $f(f^{-1}(B_0))=f(S) \subset B_0$\\   
+\end{flushleft}
+\begin{flushleft}
+    $\>\>\>\>\>$(ii) If $f$ is surjective,then $B$ includes no such $x$ and $y$, then every element in $B_0$ can be mapped to its preimage(s)-single and multiple.
+    For every element that has a single preimage $z$ or multiple preimages $\{z_0,z_1,z_2,...\}$, since there may exist some $t \in B-B_0$ that has a preimage some $z \in A-A_0$, some $z$ is a member of a set $S \subseteq A$. Then we have the set $f^{-1}(B_0)=S \subseteq A$.
+    Since there are no $x \in B_0$ that $f$ maps no $z$ to, for every $x \in B_0$, we have a preimage in $S$, then $f(S)=B_0$. Hence we have $f(f^{-1}(B_0))=f(S)=B_0$.
+    We conclude by (i) and (ii), that $f(f^{-1}(B_0)) \subseteq B_0$
+\end{flushleft}
+ 
+\section*{Answer 3}
+\begin{flushleft}
+    \textbf{(i) $\rightarrow$ (ii)} $\>\>\>\>\>$By definition, a set is countable either it is finite, or has the same cardinality as the set of positive integers. For an infinite non empty set $A$, if $A$ is countable, it should have the property: \\     
+\end{flushleft}
+\begin{tabular}{l l}
+    & $|A|=|\mathbb{Z}^{+}| \equiv (|A|\geq|\mathbb{Z}^{+}|) \land (|A|\leq|\mathbb{Z}^{+}|)$\\
+\end{tabular}
+\begin{flushleft}
+    $\>\>\>\>\>$Since $|A|\leq|\mathbb{Z}^{+}|$, there is a surjective function $f:\mathbb{Z}^{+} \rightarrow A$. 
+    If A is a finite non empty set, since infinite sets have larger cardinality than of finite sets $|A|\leq|\mathbb{Z}^{+}|$ holds. There is a surjective function $f:\mathbb{Z}^{+} \rightarrow A$.\\    
+\end{flushleft}
+\begin{flushleft}
+    \textbf{(ii) $\rightarrow$ (iii)} $\>\>\>\>\>$For a non empty set $A$, if there is a surjective function $f:\mathbb{Z}^{+} \rightarrow A$, then:\\
+\end{flushleft}
+\begin{tabular}{l l}
+    & $(|A|\leq|\mathbb{Z}^{+}|) \equiv (|\mathbb{Z}^{+}|\geq|A|)$\\
+\end{tabular}
+\begin{flushleft}
+    $\>\>\>\>\>$There exists an injective function $f:A \rightarrow \mathbb{Z}^{+}$.\\
+\end{flushleft}
+\begin{flushleft}
+    \textbf{(iii) $\rightarrow$ (i)} $\>\>\>\>\>$For a non empty set $A$, if there is an injective function $f:A \rightarrow \mathbb{Z}^{+}$, then:\\
+\end{flushleft}
+\begin{tabular}{l l}
+    & $(|A|\leq|\mathbb{Z}^{+}|) \equiv (|\mathbb{Z}^{+}|\geq|A|)$\\
+\end{tabular}
+\begin{flushleft}
+    $\>\>\>\>\>$Since, $(|A|\leq|\mathbb{Z}^{+}|)$, if $\mathbb{Z}^{+}|$ is countable, $A$ is countable. 
+    We can define a bijection $f:\mathbb{Z}^{+} \rightarrow \mathbb{Z}^{+}$ which is $f(x)=x$. Then:\\    
+\end{flushleft}
+\begin{tabular}{l l}
+    & $|\mathbb{Z}^{+}| = |\mathbb{Z}^{+}|$ \\
+\end{tabular}
+\begin{flushleft}
+    Since the cardinality of the set is equal to the cardinality of positive integers, the set positive integers is countable. Hence the set $A$ is countable.\\
+\end{flushleft}
+\section*{Answer 4}
+\begin{flushleft}
+    \textbf{a)}$\>\>\>\>\>$By definition, a set is countable either it is finite, or has the same cardinality as the set of positive integers. Since the set of finite binary strings is finite, it is countable.     
+\end{flushleft}
+
+\begin{flushleft}
+    \textbf{b)} Assume the set of infinite binary strings is countable.
+    Then we could list all the elements likewise:
+\end{flushleft}
+\begin{tabular}{l l l}
+    & $s_1=d_{11} d_{12} d_{13}$ & $ ... $\\
+    & $s_2=d_{21} d_{22} d_{23}$ & $ ... $\\
+    & $.$&\\
+    & $.$&\\
+    & $.$&\\
+\end{tabular}
+\begin{flushleft}
+    $\>\>\>\>\>$For any string $s_n$, the string must be in the set. We will define a string $s_n$, such that:
+\end{flushleft}
+\begin{tabular}{l l l l}
+    & $s_n=f_{1} f_{2} f_{3}...$& & $for f_{i} \neq d_{ii}$\\
+\end{tabular}
+\begin{flushleft}
+    $\>\>\>\>\>$Since we cannot find any matching string $s_i$ for $s_n$ in the set, by contradiction the set is uncountable. 
+\end{flushleft}
+\section*{Answer 5}
+
+    \begin{flushleft}
+        \textbf{a)}For all integers $n \geq k$, there exists k such that $k=1$. Then: \\ 
+    \end{flushleft}
+    \begin{tabular}{l l}
+        & $log(n)+log(n)...+log(n) \geq log(1)+log(2)+...+log(n)$ \\
+        & \\
+        & $nlog(n) \geq log(n!)$ \\
+        & \\
+        & $|nlog(n)| \geq |log(n!)|$ \\
+    \end{tabular}
+    \begin{flushleft}
+        $\>\>\>\>\>$We proved that: \\
+    \end{flushleft}
+    \begin{tabular}{l l}
+        & $\exists k \exists c (\forall x > k)(|xlog(x)| \geq c|log(n!)|)$ \\
+    \end{tabular}
+    \begin{flushleft}
+        $\>\>\>\>\>$With the values of c and k such that $c=1$ and $k=1$. Hence:\\
+    \end{flushleft}
+    \begin{tabular}{l l}
+        & $nlog(n)=\Omega(log(n!))$ \\
+    \end{tabular}
+
+    \begin{flushleft}
+        $\>\>\>\>\>$We will ignore the first half of the terms. Then: \\ 
+    \end{flushleft}
+    \begin{tabular}{l l}
+        & $(\lceil \frac{n}{2} \rceil)(\lceil \frac{n}{2} \rceil)...(\lceil \frac{n}{2} \rceil) \leq (1)(2)(3)...(n)$ \\
+        & \\
+        & $\lceil \frac{n}{2} \rceil^{n-\lceil \frac{n}{2} \rceil+1} \leq n!$ \\
+        & \\
+        & $(\frac{n}{2})^{\frac{n}{2}} \leq \lceil \frac{n}{2} \rceil^{n-\lceil \frac{n}{2} \rceil+1}$ \\
+        & \\
+        & $(\frac{n}{2})^{\frac{n}{2}} \leq n!$ \\
+        & \\
+        & $log((\frac{n}{2})^{\frac{n}{2}}) \leq log(n!)$\\
+        & \\
+        & $(\frac{n}{2})log(\frac{n}{2}) \leq log(n!)$\\
+        & \\
+        & $(\frac{n}{2})log(\frac{1}{2}) + (\frac{n}{2})log(n) \leq log(n!)$\\
+        & \\
+        & $(\frac{n}{2})log(n) \leq (\frac{n}{2})log(\frac{1}{2}) + (\frac{n}{2})log(n)$\\
+        & \\
+        & $(\frac{n}{2})log(n) \leq log(n!)$\\
+        & \\
+        & $nlog(n) \leq 2log(n!)$\\
+        & \\
+        & $|nlog(n)| \leq 2|log(n!)|$\\
+    \end{tabular}
+    \begin{flushleft}
+        $\>\>\>\>\>$We proved that: \\
+    \end{flushleft}
+    \begin{tabular}{l l}
+        & $\exists k \exists c (\forall x > k)(|xlog(x)| \leq c|log(n!)|)$ \\
+    \end{tabular}
+    \begin{flushleft}
+        $\>\>\>\>\>$With the values of c and k such that $c=2$ and $k=1$. Hence:\\
+    \end{flushleft}
+    \begin{tabular}{l l}
+        & $nlog(n)=O(log(n!))$ \\
+    \end{tabular}
+    \begin{flushleft}
+        $\>\>\>\>\>$Since we proved $nlog(n)=O(log(n!))$ and $nlog(n)=\Omega(log(n!))$:\\
+    \end{flushleft}
+    \begin{tabular}{l l}
+        & $nlog(n)=\Theta(log(n!))$ \\
+    \end{tabular}
+
+\begin{flushleft}
+    \textbf{b)} $\forall n ((n \in \mathbb{Z}) \rightarrow (((n+1)!-n!=n(n!)) \land (2^{n+1}-2^{n}=2^{n})))$. Because we are involved in integers, 
+    growth rates can be determined as such. If we order two sides one by one:\\
+\end{flushleft}
+\begin{tabular}{l l l l l l l l l l l l}
+    & $1$ & $\bullet$ & $2$ & $\bullet$ & $3$ & $ ... $ & $n-1$ & $\bullet$ & $n$ & $\bullet$ & $n$\\
+    & $2$ & $\bullet$ & $2$ & $\bullet$ & $2$ & $ ... $ & $2$ & $\bullet$ & $2$ & &\\
+\end{tabular}
+\begin{flushleft}
+    By the commutativity rule for product:
+\end{flushleft}
+\begin{tabular}{l l l l l l l l l l}
+    & $n$ & $\bullet$ & $2$ & $\bullet$ & $3$ & $ ... $ & $n-1$ & $\bullet$ & $n$\\
+    & $2$ & $\bullet$ & $2$ & $\bullet$ & $2$ & $ ... $ & $2$ & $\bullet$ & $2$\\
+\end{tabular}
+\begin{flushleft}
+    Then:
+\end{flushleft}
+\begin{tabular}{l l}
+    & $\forall (n \geq 2) (n(n!) \geq 2^{n})$ \\
+\end{tabular}
+\begin{flushleft}
+    We conclude that for all $n \geq 2$, growth rate of $n!$ is greater than of $2^{n}$. Hence $n!$ grows faster as n goes larger. \\
+\end{flushleft}
+
+
+
+\end{document}
