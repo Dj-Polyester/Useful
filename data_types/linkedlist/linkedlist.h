@@ -27,6 +27,7 @@ class list
         ~list();
 
         void insert(T data,int index);
+        size_t insert_sorted(T data);
         void append(T data);
         void push(T data);
         
@@ -178,6 +179,31 @@ void list<T>::push(T data)
     this->len++;
 }
 
+template<class T>
+size_t list<T>::insert_sorted(T data)
+{
+    int index=0;
+    node<T>* curr;
+    node<T>* newnode = new node<T>(data,NULL,NULL);
+    
+    size_t i;
+    curr = this->head->next;
+
+    while(curr->next && curr->data < newnode->data)
+    {
+        curr=curr->next;
+        ++index;
+    }
+    
+
+    newnode->next=curr;
+    newnode->pre=curr->pre;
+    curr->pre->next=newnode;
+    curr->pre=newnode;
+
+    this->len++;
+    return index;
+}
 
 template<class T>
 void list<T>::insert(T data,int index)
@@ -220,8 +246,6 @@ void list<T>::insert(T data,int index)
         curr->pre=newnode;
 
         this->len++;
-    
-
 }
 
 template<class T>

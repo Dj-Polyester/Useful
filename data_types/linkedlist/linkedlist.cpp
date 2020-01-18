@@ -8,15 +8,15 @@ int main()
     
     list<int> List; 
 
-    List.append( 1);
-    List.append( 5);
-    List.append( 2);
-    List.append( 12);
-    List.append( 19);
-    List.append( 19);
-    List.append( 7);
-    List.append( 19);
-    List.append( 1);
+    cout << List.insert_sorted( 1 ) << endl;
+    cout << List.insert_sorted( 5 ) << endl;
+    cout << List.insert_sorted( 2 ) << endl;
+    cout << List.insert_sorted( 12 ) << endl;
+    cout << List.insert_sorted( 19 ) << endl;
+    cout << List.insert_sorted( 19 ) << endl;
+    cout << List.insert_sorted( 7 ) << endl;
+    cout << List.insert_sorted( 19 ) << endl;
+    cout << List.insert_sorted( 1 ) << endl;
    
     cout << List << endl;
     cout << List[2] << endl;
@@ -67,13 +67,13 @@ int main()
     cout << List << endl;
     List.printReverse();
 
-/*
-    printf("MIN: %d\n",min(List));
-    printf("MAX: %d\n",max(List));
-    printf("POP: %d\n",pop(List,-1));
-    printList(List);
-    reverseprintList(List);
-    */
+
+    // printf("MIN: %d\n",min(List));
+    // printf("MAX: %d\n",max(List));
+    // printf("POP: %d\n",pop(List,-1));
+    // printList(List);
+    // reverseprintList(List);
+    
     
     return 0;
 }
