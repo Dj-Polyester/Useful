@@ -1,12 +1,12 @@
-#include <limits>
-#include "linkedlist.hpp"
+#include <iostream>
+#include "linkedlist.h"
 
 using namespace std;
 
 int main()
 {
     
-    list<int> List; 
+    linkedlist<int> List; 
 
     cout << List.insert_sorted( 1 ) << endl;
     cout << List.insert_sorted( 5 ) << endl;
@@ -19,62 +19,31 @@ int main()
     cout << List.insert_sorted( 1 ) << endl;
    
     cout << List << endl;
-    cout << List[2] << endl;
-    List.printReverse();
+    cout << List[8] << endl;
 
-    List.insert(8,2);
+    List.insert(31,3);
     cout << "INSERT:\n";
     cout << List << endl;
-    List.printReverse();
 
-    List.insert(3,-1);
+    List.insert(3,9);
     cout << "INSERT:\n";
     cout << List << endl;
-    List.printReverse();
 
-    List.insert(3,16);
-    cout << "INSERT:\n";
-    cout << List << endl;
-    List.printReverse();
-
-    List.nremove(-3);
+    List.nremove(0);
     cout << "NREMOVE:\n";
     cout << List << endl;
-    List.printReverse();
-
-    List.nremove(1);
+    
+    List.nremove(2);
     cout << "NREMOVE:\n";
     cout << List << endl;
-    List.printReverse();
 
-    List.removelast(19);
-    cout << "REMOVELAST:\n";
+    List.nremove(9);
+    cout << "NREMOVE:\n";
     cout << List << endl;
-    List.printReverse();
-
-    List.removelast(19);
-    cout << "REMOVELAST:\n";
+ 
+    List.del();
+    cout << "DEL:\n";
     cout << List << endl;
-    List.printReverse();
 
-    List.removeall(19);
-    cout << "REMOVEALL:\n";
-    cout << List << endl;
-    List.printReverse();
-
-    List.invert();
-    cout << "INVERT:\n";
-    cout << List << endl;
-    List.printReverse();
-
-
-    // printf("MIN: %d\n",min(List));
-    // printf("MAX: %d\n",max(List));
-    // printf("POP: %d\n",pop(List,-1));
-    // printList(List);
-    // reverseprintList(List);
-    
-    
     return 0;
 }
-

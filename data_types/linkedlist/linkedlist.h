@@ -1,103 +1,141 @@
-#ifndef linkedlist
-#define linkedlist
-
 #include <iostream>
 
 template <class T>
-class node
+class linkedlist
 {
-    public:
-        T data;
-        node* next;
-        node* pre;
-
-        node(T x, node* p, node* n): data(x), pre(p), next(n) {}
-        node(): pre(NULL), next(NULL) {}
-};
-
-template <class T>
-class list
-{
-    public:
-        int len;
+    private:
+        template <class U>
+        class node
+        {
+            public:
+                U data;
+                node<U>* next;
+                node(U x, node<U>* n): data(x), next(n) {}
+                node(U x): data(x), next(NULL) {}
+                node(): next(NULL) {}
+        };
+        std::ostream& print(std::ostream& out, const linkedlist<T> &List) const;
         node<T>* head;
-        node<T>* tail;
+        
 
-        list();
-        ~list();
+    public:
+        linkedlist();
+        linkedlist(const linkedlist<T> &rhs);
+        ~linkedlist();
 
         void insert(T data,int index);
         size_t insert_sorted(T data);
-        void append(T data);
-        void push(T data);
         
         void nremove(int index);
-        void removefirst(T data);
-        void removelast(T data);
-        void removeall(T data);
-
-        void print();
-        void printReverse();
-        
-        void swap(T &a,T &b);
-        void invert();
-        T pop(int index);
-        T pop();
-        int max();
-        int min();
-        void removelist();
-        void freelist();
+        void del();//clear the list completely
 
         template<class U>
-        friend std::ostream& operator<<(std::ostream& out, const list<U> &List);
-        T & operator [] (int index);
+        friend std::ostream& operator<<(std::ostream& out, const linkedlist<U> &List);
+
+        T& operator[](size_t index);
+        linkedlist<T>& operator=(const linkedlist<T> &rhs);
 };
 
-template<class T>
-T & list<T>::operator [] (int index)
+template <class T>
+linkedlist<T>::linkedlist()
 {
-        int length=this->len;
-        node<T>* curr;
-        size_t i;
-        //index negative
-        if (index<0)
-            index+=length+1;
+    head=NULL;
+}
 
-        //index bigger than length
-        if(length-1 < index)
-            index=length;
-
-        //close to head
-        if(index<length/2)
-        {
-            curr = this->head;
-            
-            for(i=0; i<=index; i++)
-            {
-                curr=curr->next;
-            }
-        }
-        //close to tail
-        else
-        {
-            curr = this->tail;
-            i=0;
-            for(i=0; i<length-index; i++)
-            {
-                curr=curr->pre;
-            }
-        }
-
-        return curr->data;
+template <class T>
+linkedlist<T>::~linkedlist()
+{
+    this->del();
 }
 
 template<class T>
-std::ostream& operator<<(std::ostream& out, const list<T> &List)
+size_t linkedlist<T>::insert_sorted(T val)
 {
-    node<T> *curr=List.head->next;
-    size_t length=List.len;
-    size_t i=0;
-    for(;i<length;++i)
+    int index=0;
+    node<T>* curr=this->head, *pre=NULL;    
+    if (curr)
+    {
+        while(curr && curr->data < val)
+        {
+            pre=curr;
+            curr=curr->next;
+            ++index;
+        }
+
+        node<T>* newnode = new node<T>(val, curr);
+        if(pre) pre->next=newnode;
+        else this->head=newnode;
+    }
+    else
+    {
+        node<T>* newnode = new node<T>(val);
+        this->head=newnode;
+    }
+    
+    return index;
+}
+
+template<class T>
+void linkedlist<T>::insert(T data,int index)
+{
+    node<T>* curr=this->head,*pre=NULL;
+    
+    if (curr)
+    {
+        while (curr && index)
+        {
+            pre=curr;
+            curr=curr->next;
+            --index;
+        }
+        
+        node<T>* newnode = new node<T>(data,curr);
+        if(pre) pre->next=newnode;
+        else this->head=newnode;
+    }
+    else
+    {
+        node<T>* newnode = new node<T>(data);
+        this->head=newnode;
+    }
+}
+
+template<class T>
+void linkedlist<T>::del()
+{
+	while(this->head)
+    {
+        node<T>* curr=this->head;
+        this->head=this->head->next;
+        delete [] curr;
+    }
+}
+
+template<class T>
+void linkedlist<T>::nremove(int index)
+{
+    node<T>* curr=this->head, *pre=NULL;
+    
+    while (curr && index)
+    {
+        pre=curr;
+        curr=curr->next;
+        --index;
+    }
+    if (curr)
+    {
+        if(pre) pre->next=pre->next->next;
+        else this->head=this->head->next;
+        delete [] curr;
+    }
+}
+
+template<class T>
+std::ostream& linkedlist<T>::print(std::ostream& out, const linkedlist<T> &List) const
+{
+    node<T> *curr=List.head;
+    
+    while(curr)
     {
         out << curr->data << " ";
         curr=curr->next;         
@@ -105,417 +143,54 @@ std::ostream& operator<<(std::ostream& out, const list<T> &List)
 
     return out;
 }
-
-
 template<class T>
-list<T>::list()
+std::ostream& operator<<(std::ostream& out, const linkedlist<T> &List)
 {
-    this->head = new node<T>;
-    this->tail = new node<T>;
-
-    this->head->next=this->tail;
-    this->tail->next=NULL;
-    this->tail->pre=this->head;
-    this->head->pre=NULL;
-
-    this->len=0;
+    return List.print(out, List);
 }
 
 template<class T>
-list<T>::~list()
+T& linkedlist<T>::operator[](size_t index)
 {
-    this->removelist();
-    this->freelist();
-}
-
-template<class T>
-void list<T>::print()
-{
-    node<T> *curr=this->head->next;
-    size_t length=this->len;
-    size_t i=0;
-    for(;i<length;++i)
-    {
-        std::cout << curr->data << " ";
-        curr=curr->next;         
-    }
-    std::cout << std::endl;
-}
-template<class T>
-void list<T>::printReverse()
-{
-    node<T> *curr=this->tail->pre;
-    size_t length=this->len;
-    size_t i=0;
-    for(;i<length;++i)
-    {
-        std::cout << curr->data << " ";
-        curr=curr->pre;         
-    }
-    std::cout << std::endl;
-}
-
-template<class T>
-void list<T>::append(T data)
-{
+    node<T>* curr=this->head,*pre=NULL;
     
-    node<T>* newnode = new node<T>(data,this->tail->pre,this->tail);
-	
-    newnode->pre->next=newnode;
-    tail->pre=newnode;
-
-    this->len++;
-}
-
-template<class T>
-void list<T>::push(T data)
-{
-    
-    node<T>* newnode = new node<T>(data,this->head,this->head->next);
-	
-    newnode->pre->next=newnode;
-    head->next=newnode;
-
-    this->len++;
-}
-
-template<class T>
-size_t list<T>::insert_sorted(T data)
-{
-    int index=0;
-    node<T>* curr;
-    node<T>* newnode = new node<T>(data,NULL,NULL);
-    
-    size_t i;
-    curr = this->head->next;
-
-    while(curr->next && curr->data < newnode->data)
+    while (curr && index)
     {
+        pre=curr;
         curr=curr->next;
-        ++index;
+        --index;
+    }
+
+    return curr->data;
+}
+
+template<class T>
+linkedlist<T>::linkedlist(const linkedlist<T> &rhs)
+{
+    *this=rhs;
+}
+
+template<class T>
+linkedlist<T>& linkedlist<T>::operator=(const linkedlist<T> &rhs)
+{
+    this->del();
+    node<T>* curr1, curr2=rhs.head, *newnode;
+
+    if (curr2)
+    {
+        newnode=new node<T>(curr2->data);
+        this->head=newnode;
+        curr1=this->head;
+        curr2=curr2->next;
     }
     
-
-    newnode->next=curr;
-    newnode->pre=curr->pre;
-    curr->pre->next=newnode;
-    curr->pre=newnode;
-
-    this->len++;
-    return index;
-}
-
-template<class T>
-void list<T>::insert(T data,int index)
-{
-    
-        int length=this->len;
-        node<T>* curr;
-        node<T>* newnode = new node<T>(data,NULL,NULL);
-        size_t i;
-        //index negative
-        if (index<0)
-            index+=length+1;
-
-        //index bigger than length
-        if(length-1 < index)
-            index=length;
-
-        //close to head
-        if(index<length/2)
-        {
-            curr = this->head;
-
-            for(i=0; i<=index; i++)
-            {
-                curr=curr->next;
-            }
-        }
-        //close to tail
-        else
-        {
-            curr = this->tail;
-            for(i=0; i<length-index; i++)
-            {
-                curr=curr->pre;
-            }
-        }
-        newnode->next=curr;
-        newnode->pre=curr->pre;
-        curr->pre->next=newnode;
-        curr->pre=newnode;
-
-        this->len++;
-}
-
-template<class T>
-void list<T>::removefirst(T data)
-{
-    if (this->len!=0)
+    while (curr2)
     {
-        int length=this->len;
-        node<T>* curr=this->head->next;
-        size_t i=0;
-        for(; i<length; ++i)
-        {
-            if (curr->data==data)
-            {
-                curr->pre->next=curr->next;
-                curr->next->pre=curr->pre;
-                delete [] curr;
-                this->len--;
-                break;
-            }
-            curr = curr->next;
-        }
+        newnode=new node<T>(curr2->data);
+        curr1->next=newnode;
+        curr1=curr1->next;
+        curr2=curr2->next;
     }
+
+    return *this;
 }
-
-template<class T>
-void list<T>::removelast(T data)
-{
-    if (this->len!=0)
-    {
-        int length=this->len;
-        node<T>* curr=this->tail->pre;
-        size_t i=0;
-        for(; i<length; ++i)
-        {
-            if (curr->data==data)
-            {
-                curr->pre->next=curr->next;
-                curr->next->pre=curr->pre;
-                delete [] curr;
-                this->len--;
-                break;
-            }
-            curr = curr->pre;
-        }
-    }
-}
-
-template<class T>
-void list<T>::removeall(T data)
-{
-    if (this->len!=0)
-    {
-        int length=this->len;
-        node<T>* current=this->head->next;
-        node<T>* currentfree;
-        size_t index=0;
-        for(; index<length; index++)
-        {
-            if (current->data==data)
-            {
-
-                current->pre->next=current->next;
-                current->next->pre=current->pre;
-                currentfree=current;
-                current = current->pre;
-                delete [] currentfree;
-
-                this->len--;
-            }
-            current = current->next;
-        }
-    }
-}
-
-template<class T>
-void list<T>::nremove(int index)
-{
-    if (this->len!=0)
-    {
-        node<T>* current;
-        int length=this->len;
-        size_t i;
-
-        //index negative
-        if (index<0)
-            index+=length;
-
-        //index bigger than length
-        if(length-1 < index)
-            index=length;
-
-        //close to head
-        if(index<length/2)
-        {
-            current = this->head;
-
-            for(i=0; i<=index; i++)
-                current=current->next;
-        }
-        //close to tail
-        else
-        {
-            current = this->tail;
-
-            for(i=0; i<length-index; i++)
-                current=current->pre;
-
-        }
-        current->pre->next=current->next;
-        current->next->pre=current->pre;
-        delete [] current;
-        this->len--;
-    }
-}
-
-template<class T>
-void list<T>::invert()
-{
-    
-        node<T>* currentnext=this->head->next;
-        node<T>* currentpre=this->tail->pre;
-        size_t i=0;
-        int length=this->len;
-        for(;i<length/2;i++)
-        {
-            swap(currentnext->data,currentpre->data);
-            currentnext=currentnext->next;
-            currentpre=currentpre->pre;
-        }
-    
-}
-
-template<class T>
-void list<T>::swap(T &a,T &b)
-{
-    T tmp=a;
-    a=b;
-    b=tmp;
-}
-/*
-template<class T>
-int min()
-{
-    if (this->len!=0)
-    {
-        node<T>* current=this->head->next;
-        int minimum=current->data;
-        for(int i=0;i<this->len-1;i++)
-        {
-            current=current->next;
-            int data=current->data;
-            if(data<minimum) minimum=data;
-        }
-        return minimum;
-    }
-    return INT_MAX;
-}
-
-int max(LIST* list)
-{
-    if (list!=NULL && list->len!=0)
-    {
-        NODE* current=list->head->next;
-        int maximum=current->data;
-        for(int i=0;i<list->len-1;i++)
-        {
-            current=current->next;
-            int data=current->data;
-            if(data>maximum) maximum=data;
-        }
-        return maximum;
-    }
-    return INT_MIN;
-}
-*/
-
-template<class T>
-T list<T>::pop(int index)
-{
-    if (this->len!=0)
-    {
-        node<T>* current;
-        int length=this->len;
-
-        //index negative
-        if (index<0)
-            index+=length;
-
-        //index bigger than length
-        if(length-1 < index)
-            index=length;
-
-        //close to head
-        if(index<length/2)
-        {
-            current = this->head;
-            size_t i=0;
-            for(; i<=index; i++)
-                current=current->next;
-        }
-        //close to tail
-        else
-        {
-            current = this->tail;
-
-            for(int i=0; i<length-index; i++)
-                current=current->pre;
-
-        }
-        current->pre->next=current->next;
-        current->next->pre=current->pre;
-        T popdata=current->data;
-        delete [] current;
-        this->len--;
-        return popdata;
-    }
-    return 0;
-}
-
-template<class T>
-T list<T>::pop()
-{
-    if (this->len!=0)
-    {
-        node<T>* current=this->tail->pre;
-        
-        current->pre->next=current->next;
-        current->next->pre=current->pre;
-        T popdata=current->data;
-        delete [] current;
-        this->len--;
-        return popdata;
-    }
-    return 0;
-}
-
-template<class T>
-void list<T>::removelist()
-{
-	if (this->len!=0)
-    {
-        int length=this->len;
-        node<T>* current=this->head->next;
-        node<T>* currentfree;
-        size_t index=0;
-        for(; index<length; index++)
-        {
-            current->pre->next=current->next;
-            current->next->pre=current->pre;
-            currentfree=current;
-            current = current->pre;
-            delete [] currentfree;
-
-            this->len--;
-            
-            current = current->next;
-        }
-    }
-	
-       
-}
-
-template<class T>
-void list<T>::freelist()
-{
-	delete [] this->head;
-    delete [] this->tail;
-}
-
-
-
-#endif
